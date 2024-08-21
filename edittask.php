@@ -3,6 +3,7 @@ include("connection.php");
 // $task_id=$_SESSION['task_id'];
 // $select="SELECT * FROM `task` WHERE `task_id` = '$task_id'";
 // $run= mysqli_query($connect, $select);
+$error="";
 
 $task_name='';
 $task_status='';
@@ -38,25 +39,18 @@ if(isset($_GET['task_id'])){
 
         $diff= ($end - $start) / (60*60*24);
         if(empty($name) || empty($start_date) || empty($end_date)){
-            echo "<div class='alert alert-danger w-100 mb-0' >
-                  <p>Please fill in the required data!</p>
-                  </div>
-                 ";
+            $error="Please fill in the required data!";
         }
         elseif($start <= $current_date && !$dateUnchanged){
-            echo "<div class='alert alert-danger w-100 mb-0'>
-                  <p>We are past that point, invalid start date!</p>
-                  </div>
-                 ";
+            $error="We are past that point, invalid start date!";
+           
         
         }
         elseif($diff <7 or $diff >30){
-            echo "<div class='alert alert-danger w-100 mb-0'>
-                  <p>Please select dates between 7 and 30 days!</p>
-                  </div>
-                 ";
+            $error="Please select dates between 7 and 30 days!";
+          
         }else{
-            echo "edited";
+           
             $start=date("Y-m-d",$start);
             $end=date("Y-m-d",$end);
     
@@ -97,6 +91,9 @@ if(isset($_GET['task_id'])){
             <div class="from-wraapper  Sign-in">
                 <form action="" method="post">
                     <h2>Edit task</h2>
+                    <div class="warning <?php if(!empty($error)) echo 'visible' ?>">
+                        <?php if (!empty($error)) echo $error ?>
+                    </div>
 
                     <div class="input-group">
                         <input type="text" id="task_name" name="task_name" value="<?php echo $task_name ?>" required>
