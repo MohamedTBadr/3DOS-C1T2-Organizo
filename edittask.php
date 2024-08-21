@@ -90,7 +90,7 @@ if(isset($_GET['task_id'])){
 <body>
     <div class="container-main">
         <div class="wrapper">
-        <a href="" class="close"><i class="fa-solid fa-x "></i></a>
+        <a href="task_details.php?task_id=<?php echo $id?>" class="close"><i class="fa-solid fa-x "></i></a>
             <!-- hoto link page eltasks hna -->
             <!-- <a href="" class="close"><i class="fa-solid fa-x "></i></a> -->
 
