@@ -1,0 +1,236 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+
+
+}
+
+body {
+    /* background-color: white; */
+    background-image: url(../img/abstract-envelope.png);
+}
+
+:root {
+    --first-color: #fda521;
+    --sec-color: #033043;
+
+}
+
+.container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.wrapper {
+    position: relative;
+    width: 30%;
+    /* height: 500PX; */
+    border: #fff solid 2px;
+    border-radius: 20PX;
+    margin: 50PX;
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    opacity: initial;
+    opacity: 70%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.close {
+    color: black;
+    position: absolute;
+    right: 10%;
+    top: 5%;
+}
+
+.form-wrapper {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease-in-out;
+}
+
+h2 {
+    font-size: 40px;
+    color: var(--first-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+.input-group {
+    position: relative;
+    margin: 30px 0;
+    border-bottom: 2px solid black;
+
+
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--sec-color);
+    pointer-events: none;
+    transition: .5s;
+    /* background-color: antiquewhite; */
+}
+.form-check-input:checked {
+    background-color: var(--first-color) !important;
+    border-color: var(--first-color) !important;
+}
+
+
+.input-group input {
+    width: 320px;
+    height: 40px;
+    font-size: 16px;
+    color: black;
+    padding: 0 5px;
+    background: transparent;
+    border: none;
+    outline: none;
+
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: -5px;
+}
+
+
+/* new  */
+.date .input-group input~label,
+.date .input-group input:valid~label {
+    top: -5px;
+}
+
+
+
+select#priority {
+
+    width: 210px;
+    /* background-color: aqua; */
+}
+
+/* end  */
+/* 
+.btn {
+    border-radius: 30PX !important;
+} */
+
+
+button {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: transparent !important;
+    box-shadow: 0 0 5px black !important;
+    font-size: 20px !important;
+    color: var(--first-color) !important;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30PX !important;
+    border: none;
+    outline: none;
+    transition: all 0.5s !important;
+    margin-top: 7% !important;
+}
+.btn-outline-primary {
+   
+    --bs-btn-border-color: none;
+}
+
+
+
+button:hover {
+    color: var(--sec-color) !important;
+    background-color: var(--first-color) !important;
+}
+
+.signUp-link {
+    font-size: 16px;
+    text-align: center;
+    margin: 15px 0;
+
+}
+.choose{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-solid, .fas {
+    font-weight: 900;
+    color: var(--first-color) !important;
+    transition: all 0.5s;
+    font-size: 25px;
+    position: absolute;
+    top: 25%;
+    left: 60%;
+}
+
+.fa-solid:hover {
+    text-shadow: 2px 2px 5px var(--first-color);
+}
+@media(max-width:750px) {
+    .wrapper {
+        width: 93%;
+    }
+
+    h2 {
+        font-size: 32px !important;
+    }
+
+    .input-group {
+        position: relative;
+        margin: 15px 0;
+        border-bottom: 2px solid black;
+    }
+
+    .input-group input {
+        margin-top: 4%;
+    }
+
+    button {
+        margin-top: 11%;
+    }
+    .choose{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+   
+}
+
+
+/* .signUp-link p {
+    color: green;
+}
+
+
+.signUp-link p a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+
+}
+
+.signUp-link p a:hover {
+    text-decoration: underline;
+} */

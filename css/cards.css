@@ -1,0 +1,126 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+}
+
+body {
+    height: 100vh;
+}
+
+.card {
+    background-color: #CAF4FF;
+    width: 25%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.form {
+    width: 60%;
+    height: 70%;
+    /* background-color: blue; */
+}
+
+input.form-control {
+    margin-left: 2%;
+    /* width: 55%; */
+    height: 50%;
+    border: 0;
+    /* padding: .375rem ; */
+    /* background-color: #CAF4FF; */
+}
+
+.category {
+    width: 30%;
+    height: 70%;
+    text-align: center;
+    /* background-color: rgb(201, 65, 156); */
+}
+h3{
+    font-size: 18px;
+    padding-top: 10%;
+}
+.flags {
+    width: 15%;
+    height: 35%;
+    /* background-color: rgb(0, 255, 217); */
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-flag {
+    margin-top: 2%;
+
+}
+
+.priorities {
+    display: none;
+    gap: 10px;
+    background-color:#CAF4FF;
+    padding: 10px;
+    border-radius: var(--bs-card-border-radius);
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    position: absolute;
+    /* left: 15%; */
+    right: -23%;
+    top: -1%;
+}
+
+#setPriority {
+    position: relative;
+}
+
+#setPriority,
+#priorityShow i {
+    cursor: pointer;
+}
+
+.d-show {
+    display: flex;
+}
+
+.d-hide {
+    display: none;
+}
+
+.img {
+    width: 100%;
+    height: 45%;
+    /* background-color: aqua; */
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+}
+
+.profile img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* margin-top: 50%v; */
+
+}
+
+.profile {
+    margin-right: 2%;
+}
+
+.img a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 8px;
+    margin-bottom: 2%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 6%;
+}

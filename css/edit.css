@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --first-color: #fda521bf;
+    --sec-color: #033043;
+
+}
+
+.main {
+    /* background-color: transparent; */
+    width: 100%;
+    height: 100vh;
+    /* background-image: url(/img/abstract-envelope.png) !important; */
+    background-image: url(../img/abstract-envelope.png);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    gap: 3%;
+    align-items: center; */
+}
+
+.head {
+    text-align: center;
+}
+
+img {
+    width: 26%;
+    height: 23%;
+    border-radius: 50%;
+    position: absolute;
+    top: -10%;
+    left: 35%;
+}
+
+.container {
+    position: relative;
+    top: 8%;
+    left: 37%;
+    /* border: 3px solid #FFF9D0; */
+    border-radius: 20px;
+    /* background-image: linear-gradient(45deg, #46b2b5, #8fd5d5, black); */
+    background-color: #ffffff9e;
+    width: 400px;
+    height: 500px;
+}
+
+
+
+.forms {
+    width: 100%;
+    height: 82%;
+    /* margin-top: 5%; */
+    /* background-color: blue; */
+    padding-top: 10%;
+}
+
+/* input,
+textarea,
+select {
+    border-color: #A68A64 !important;
+} */
+
+label {
+    margin: 7px 0px;
+    font-size: 20px !important;
+    color: white;
+    padding: 6px;
+    font-weight: bold;
+    border-radius: 1px solid;
+}
+
+.form-label {
+    margin-left: 2%;
+}
+
+#formFile {
+    width: 94%;
+    /* margin-left: 2%; */
+    border: none;
+    margin-top: 5%;
+}
+
+.form-group {
+    margin-left: 4%;
+}
+
+.mb-3 {
+    margin-left: -3%;
+    margin-top: 3%;
+}
+
+.btn {
+    /* margin-left:13%; */
+    height: 80%;
+    width: 30%;
+    /* margin-top: 2%; */
+    /* background-color: #ec932d; */
+}
+
+.btn a {
+    color: black;
+    text-decoration: none;
+    font-size: 20PX;
+    font-weight: 500;
+
+}
+
+.btnn {
+    /* background-color: #581F0E; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9%;
+    height: 19%;
+    padding: 9px 0;
+
+}
+
+
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 10%;
+
+}
+
+.profile-card {
+    background-color: #f7faff73;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--secondary-color);
+
+
+    position: relative;
+    /* width: 35%; */
+    /* height: 400PX; */
+    border: 4px solid gold;
+    border-radius: 20PX;
+    /* margin-top: 10%; */
+    text-align: center;
+    /* background-color: #1d1d27; */
+    padding: 40px;
+    opacity: initial;
+    opacity: 80%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    /* margin: 10vh; */
+    /* margin-top: 10vh; */
+}
+
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+}
+
+h1 {
+    font-size: 50px;
+    padding-top: 2%;
+    color: #fda521bf;
+
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #033043;
+    padding-left: 8%;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    /* border-radius: 8px; */
+    border: 1px solid var(--fourthly-color);
+    font-size: 14px;
+    width: 80%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: transparent;
+    border-bottom: 2px solid;
+    margin-left: 7%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(33, 36, 177, 0.3);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.form-group .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+
+
+.form-group input:focus {
+    position: relative;
+    top: -5px;
+}
+
+button {
+    position: relative;
+    width: 59%;
+    height: 40px;
+    background: transparent;
+    box-shadow: 0 0 5px black;
+    font-size: 20px;
+    color: var(--first-color);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30PX;
+    border: none;
+    outline: none;
+    transition: all 0.5s;
+    margin-left: 19%;
+    margin-top: 8%;
+}
+
+button:hover {
+    color: var(--sec-color);
+    background-color: var(--first-color);
+}
+
+
+.addto {
+    transform: translateX(50%);
+}
+
+.fa-solid, .fas {
+    font-weight: 900;
+    color: var(--first-color) !important;
+    transition: all 0.5s;
+    font-size: 25px;
+    position: absolute;
+    top: 4%;
+    left: 86%;
+}
+
+.fa-solid:hover {
+    text-shadow: 2px 2px 5px var(--first-color);
+}
+
+/* new  */
+
+.container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 500px; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    /* height: 150vh; */
+    /* margin-top: -90px; */
+    /* margin-top: 20px; */
+}
+
+
+
+
+
+@media(max-width:700px) {
+    .container {
+        width: 80%;
+        position: absolute;
+        left: 10%;
+        top: 18%;
+    }
+
+    .form-control {
+        width: 95%;
+    }
+
+    label {
+        /* margin: 7px 0px; */
+        font-size: 18px;
+        color: white;
+    }
+
+}
+.warning {
+    color:white !important;
+    background-color: #ff00009e;
+    border-radius: 20px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 100px; */
+    position: relative;
+    left: 35%;
+    border: solid 2px #ff000048;
+    margin-top: 20px;
+    padding: 10px;
+}
+  .warning.visible {
+    display: block;
+    text-align: center;
+}
+.warning {
+    display: none;
+    color: red;
+}
+
+.done {
+    color:white !important;
+    background-color: rgba(0, 128, 0, 0.555);
+    border-radius: 20px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 100px; */
+    position: relative;
+    left: 35%;
+    border: solid 2px green;
+    margin-top: 20px;
+    padding: 10px;
+}
+  .done.visible {
+    display: block;
+    text-align: center;
+}
+.done {
+    display: none;
+    color: green;
+}

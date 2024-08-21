@@ -1,0 +1,162 @@
+:root {
+  --primary-color: #0A7273;
+  --SECONDARY-COLOR: #E9E3D5;
+  --tertiary-color: #033043;
+  --forth-color: #f77810;
+
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: url(../img/abstract-envelope.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+
+.card {
+  margin: auto;
+  width: 95vh;
+  background: #e9e3d597;
+  transition: 1s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.right-side {
+  width: 50%;
+  height: 100%;
+}
+
+.left-side {
+  width: 50%;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+
+
+.center {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+p {
+  margin: 0;
+}
+
+h6 {
+  margin: 0;
+}
+
+.pp {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+
+
+/* comments  */
+
+.second .comments {
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  /* font-size: 20px; */
+  height: 30vh;
+  width: 95vh;
+  margin: 3% auto;
+  overflow: auto;
+  border-radius: 5px;
+  background: #e9e3d597;
+}
+
+.second .comments .comment-item {
+  /* margin-bottom: 10px; */
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.orange {
+  color: var(--forth-color);
+}
+.txt{
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
+.fa-eye:before {
+  content: "\f06e";
+  /* color: white; */
+  position: absolute;
+  top: 0px;
+  right: 215px;
+  font-size: 23px;
+}
+.fa-eye-slash:before {
+  content: "\f070";
+  position: absolute;
+  top: 0px;
+  right: 215px;
+  font-size: 23px;
+}
+
+@media(max-width:750px){
+  .card{
+    width: 90%;
+  }
+  .second{
+    width: 90%;
+  }
+  .second .comments {
+    width: 99%;
+    margin-left: 6%;
+    margin-top: 7%;
+}
+.txt{
+  display: flex;
+  justify-content: start;
+}
+.ms-5 {
+  margin-left: 3rem !important;
+  font-size: 13px;
+}
+.ms-2 {
+  margin-left: .5rem !important;
+  font-size: 14px;
+}
+.mt-2 {
+  font-size: 17px;
+  margin-top: .5rem !important;
+}
+.fa-eye:before {
+  content: "\f06e";
+  /* color: white; */
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 23px;
+}
+.fa-eye-slash:before {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 23px;
+}
+
+}
