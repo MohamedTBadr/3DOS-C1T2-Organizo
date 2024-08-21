@@ -94,7 +94,7 @@ if ( $task_id > 0 && $user_id > 0) {
       
      
 
-    <a href="edittask.php?task_id=<?php echo $task_id?>" class=""><i class="fa-regular fa-pen-to-square orange"></i></a>
+   
   </div>
 
   <h6 class="orange ">
@@ -123,7 +123,7 @@ if ( $task_id > 0 && $user_id > 0) {
   <div class="row g-3">
     <div class="col-sm-6">
       <div class="center">
-        <img src="img/<?php echo $fetch_image_assigned_by['image']; ?>" class="pp" alt="profile pic">
+        <img src="img/profile/<?php echo $fetch_image_assigned_by['image']; ?>" class="pp" alt="profile pic">
         <h6 class="ms-2">Assigne By:
           <?php echo $task['assign_by_first_name']. " " . $task['assign_by_last_name']; ?>
         </h6>
@@ -136,7 +136,7 @@ if ( $task_id > 0 && $user_id > 0) {
     </div>
     <div class="col-sm-6 ">
       <div class="center">
-        <img src="img/<?php echo $fetch_image_assignie['image']; ?>>" class="pp" alt=>
+        <img src="img/profile/<?php echo $fetch_image_assignie['image']; ?>>" class="pp" alt=>
         <h6 class="ms-2">
           Assignee:
           <?php echo $task['assignie_first_name'] . " " . $task['assignie_last_name']; ?>
