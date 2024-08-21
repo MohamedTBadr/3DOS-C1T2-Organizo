@@ -68,9 +68,15 @@ if (isset($_POST['submit']))
     <title>Email Verify</title>
     <link rel="stylesheet" type="text/css" href="css/editpassword.css">
     <style>
-         .warning {
-             display: none; color: red;
-         }
+         <style>
+        .warning {
+            display: none;
+            color: red;
+        }
+        .warning.visible {
+            display: block;
+        }
+    </style>
     </style>
 </head>
 
@@ -80,9 +86,9 @@ if (isset($_POST['submit']))
             <form method="POST">
             <h2>Verify Your E-mail</h2>
             <br>
-            <div class="warning <?php if ($error) { echo 'visible'; } ?>">
-                <?php if ($error) { echo $error; } ?>
-            </div>
+            <div class="warning <?php if(!empty($error)) echo 'visible' ?>">
+                        <?php if (!empty($error)) echo $error ?>
+                    </div>
             <div class="input-group">
                 <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''?>">
                 <label for="">E-mail</label>
