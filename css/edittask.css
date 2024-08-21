@@ -234,3 +234,26 @@ button:hover {
 .signUp-link p a:hover {
     text-decoration: underline;
 } */
+.warning {
+    color:white !important;
+    background-color: #ff00009e;
+    border-radius: 20px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 100px; */
+    position: relative;
+    left: 25%;
+    border: solid 2px #ff000048;
+    margin-top: 20px;
+    padding: 10px;
+}
+  .warning.visible {
+    display: block;
+    text-align: center;
+}
+.warning {
+    display: none;
+    color: red;
+}
