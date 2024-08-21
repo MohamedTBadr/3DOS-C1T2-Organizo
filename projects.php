@@ -140,7 +140,7 @@ if (isset($_POST['search'])) {
     
         <h2 class="card-title">Project :</h2>
         
-        <a href="ViewSprints.php?pid=<?php echo $project['project_id'] ?>">
+        <a href="ViewSprints.php?pid=<?php echo $data['project_id'] ?>">
             <h2><?php echo $data['project_name'] ?></h2>
         </a>
         <h3>Team members:</h3>
