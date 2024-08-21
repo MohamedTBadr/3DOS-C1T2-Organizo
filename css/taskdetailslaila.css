@@ -25,6 +25,7 @@ body {
 
 .card {
   margin: auto;
+  position: relative;
   width: 95vh;
   background: #e9e3d597;
   transition: 1s ease-in-out;
