@@ -70,6 +70,7 @@ if ($task_id > 0 && $user_id > 0) {
   <!-- start card -->
 
   <div class="card mt-5">
+  <a href="tasks.php" class="close"><i class="fa-solid fa-x "></i></a>
 
     <div class="w-100">
       <div class="txt">
@@ -165,9 +166,8 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
 </div>
 
 
-
-  <!-- comments -->
-  <div class="second">
+ <!-- comments -->
+<div class="second">
     <div class="comments">
       <?php
         $cid = $task['task_id'];
@@ -177,63 +177,44 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
                          WHERE `comment`.`task_id` = '$cid'";
         $run_comment = mysqli_query($connect, $commentQuery);
         while ($fetch_comment = mysqli_fetch_assoc($run_comment)) { ?>
-      <div class="comment-item">
-        <!-- Display Comment with User Name -->
+        
+        <div class="comment-item">
+          <div class="center">
+            <div class="me-auto">
+              <h6 class="orange">
+                <?php echo $fetch_comment['first_name'] . " " . $fetch_comment['last_name']; ?> :
+              </h6>
+              <p class="ms-5">
+                <?php echo $fetch_comment['comment']; ?>
+              </p>
+            </div>
 
-        <div class="center">
-          <div class="me-auto">
-            <h6 class="orange ">
-              <!-- <img src="img/" class="pp" alt=> -->
-              <?php echo $fetch_comment['first_name'] . " " . $fetch_comment['last_name']; ?> :
-            </h6>
-            <p class="ms-5">
-              <?php echo $fetch_comment['comment']; ?>
-            </p>
-          </div>
+            <div class="me-2">
+              <?php if (!empty($fetch_comment['image'])) { ?>
+              <img src="./img/<?php echo $fetch_comment['image']; ?>" alt="Comment Image"
+                style="max-width: 200px; max-height: 200px;">
+              </div>
 
-         
-
-          <!-- Display Image if it exists -->
-<div class="me-2">
-<?php if (!empty($fetch_comment['image'])) { ?>
-          <img src="./img/<?php echo $fetch_comment['image']; ?>" alt="Comment Image"
-            style="max-width: 200px; max-height: 200px;">
-           
+              <!-- download -->
+              <div class="me-2">
+                <a href="./img/<?php echo $fetch_comment['image']; ?>" download>
+                  <i class="fa-solid fa-download orange"></i>
+                </a>
+              </div>
+              <?php } ?>
+            </div>
+            
+            <!-- Delete Comment -->
+            <div class="me-2">
+              <a href="task_details.php?task_id=<?php echo $task_id; ?>&deletee=<?php echo $fetch_comment['comment_id']; ?>">
+                <i class="fa-solid fa-trash orange"></i>
+              </a>
+            </div>
+          </div> 
+      <?php } ?>
+    </div>
 </div>
-
- 
-<!-- download  -->
-<div class="me-2">
-  <a href="./img/<?php echo $fetch_comment['image']; ?>" download>
-    <i class="fa-solid fa-download orange"></i>
-          </a></div>
-          
-          <?php } ?>
-          <!-- Delete Comment -->
-           <div class="me-2">
-           <a href="task_details.php?task_id=<?php echo $task_id; ?>&deletee=<?php echo $fetch_comment['comment_id']; ?>">
-            <i class="fa-solid fa-trash orange" ></i>
-          </a>
-        </div>
-</div>
-      </div>
-      
-      
-      
-      
-    </p>
-    
-  </div>
-  <?php } ?>
-</div>
-</div>
-<!-- end comments  -->
-
-
-
-
-
-
+<!-- end comments -->
 
   <!-- bootstrap link -->
   <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
