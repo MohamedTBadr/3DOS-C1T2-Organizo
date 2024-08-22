@@ -166,13 +166,11 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
 
 </div>
 
-
- <!-- comments -->
 <div class="second">
     <div class="comments">
       <?php
         $cid = $task['task_id'];
-        $commentQuery = "SELECT `comment_id`, `comment`.`image`, `comment`, `first_name`, `last_name` 
+        $commentQuery = "SELECT `comment_id`, `comment`.`user_id`, `comment`.`image`, `comment`, `first_name`, `last_name` 
                          FROM `comment`
                          JOIN `user` ON `comment`.`user_id` = `user`.`user_id`
                          WHERE `comment`.`task_id` = '$cid'";
@@ -190,32 +188,33 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
               </p>
             </div>
 
+            <?php if (!empty($fetch_comment['image'])) { ?>
             <div class="me-2">
-              <?php if (!empty($fetch_comment['image'])) { ?>
               <img src="./img/<?php echo $fetch_comment['image']; ?>" alt="Comment Image"
                 style="max-width: 200px; max-height: 200px;">
-              </div>
-
-              <!-- download -->
-              <div class="me-2">
-                <a href="./img/<?php echo $fetch_comment['image']; ?>" download>
-                  <i class="fa-solid fa-download orange"></i>
-                </a>
-              </div>
-              <?php } ?>
             </div>
+
+            <!-- download -->
+            <div class="me-2">
+              <a href="./img/<?php echo $fetch_comment['image']; ?>" download>
+                <i class="fa-solid fa-download orange"></i>
+              </a>
+            </div>
+            <?php } ?>
             
-            <!-- Delete Comment -->
+            <!-- Delete Comment (visible only to the comment author) -->
+            <?php if ($fetch_comment['user_id'] == $_SESSION['user_id']) { ?>
             <div class="me-2">
               <a href="task_details.php?task_id=<?php echo $task_id; ?>&deletee=<?php echo $fetch_comment['comment_id']; ?>">
                 <i class="fa-solid fa-trash orange"></i>
               </a>
             </div>
+            <?php } ?>
           </div> 
+        </div> <!-- Closing div for comment-item -->
       <?php } ?>
     </div>
 </div>
-<!-- end comments -->
 
   <!-- bootstrap link -->
   <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
