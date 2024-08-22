@@ -8,7 +8,7 @@ if(isset($_GET['task_id'])){
 
 $user_id=$_SESSION['user_id'];
 
-
+$role_id = $_SESSION['role_id'];
 if ($task_id > 0 && $user_id > 0) {
    
     $select = "SELECT `task`.*,  
@@ -104,8 +104,13 @@ if ($task_id > 0 && $user_id > 0) {
           </p>
           
 
-        <a href="edittask.php?task_id=<?php echo $task_id?>" class=""><i class="fa-regular fa-pen-to-square orange"></i></a>
-      </div>
+          <?php
+
+if ($role_id == 1 || $user_id == $task['assign_by']) { ?>
+  <a href="edittask.php?task_id=<?php echo $task_id?>" class="">
+    <i class="fa-regular fa-pen-to-square orange"></i>
+  </a>
+<?php } ?>      </div>
 
       <h6 class="orange ">
         <?php  echo "Task Name: " ?>
@@ -202,7 +207,7 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
             </div>
             <?php } ?>
             
-            <!-- Delete Comment (visible only to the comment author) -->
+           
             <?php if ($fetch_comment['user_id'] == $_SESSION['user_id']) { ?>
             <div class="me-2">
               <a href="task_details.php?task_id=<?php echo $task_id; ?>&deletee=<?php echo $fetch_comment['comment_id']; ?>">
@@ -211,7 +216,7 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
             </div>
             <?php } ?>
           </div> 
-        </div> <!-- Closing div for comment-item -->
+        </div> 
       <?php } ?>
     </div>
 </div>
