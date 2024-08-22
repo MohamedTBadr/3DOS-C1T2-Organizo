@@ -1419,7 +1419,7 @@ button:not(.collapsed) {
 	border-radius: 50%;
 }
 .fun-facts .single-fun:hover i{
-	color:#1A76D1;
+	color:#E07A5F;
 	background:#fff;
 	border-color:transparent;
 }
@@ -1467,6 +1467,7 @@ button:not(.collapsed) {
   
   background-image: url(../img/Wave\ \(5\).png);
   /* background-color:#26272b; */
+  background-size: cover;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
