@@ -55,71 +55,80 @@ if (!isset($_GET['pid'], $_SESSION['user_id'])) {
         $error= "No project selected.";
     }
 
-    $user_id = $_SESSION['user_id'];
-    $sqlstmt = "SELECT * FROM `user` JOIN `plan` ON `user`.`plan_id` = `plan`.`plan_id` WHERE `user_id` = '$user_id'";
-    $execstmt = mysqli_query($connect, $sqlstmt);
-    $fetcharr = mysqli_fetch_assoc($execstmt);
-    $plan_id = $fetcharr['plan_id'];
-    $role_id = $fetcharr['role_id'];
-    if ($role_id == 1) {
-        if (isset($_POST['submit'])) {
-            // $first_name = $_POST['first_name'];
-            // $last_name = $_POST['last_name'];
-            $email = mysqli_real_escape_string($connect,$_POST['email']);
+    $select="SELECT * FROM `subscription` WHERE `user_id` = '$user_id'";
+    $run_select=mysqli_query($connect,$select);
+    $fetch_subscription = mysqli_fetch_assoc($run_select);
 
-            $planMember = "SELECT * FROM `plan` WHERE `plan_id` = $plan_id";
-            $run_plan = mysqli_query($connect, $planMember);
-            if ($run_plan && mysqli_num_rows($run_plan) > 0) {
-                $fetch_plan = mysqli_fetch_assoc($run_plan);
-                $limitMember = $fetch_plan['limit'];
+    if (($fetch_subscription['status']) == 'not active'){
+        $error= "Your PLan is Not Active. Please Renew Your plan!";
+    }else{
 
-                $pro = "SELECT * FROM `project_member` WHERE `project_id` = $project_id";
-                $mysqli = mysqli_query($connect, $pro);
-                if ($mysqli && mysqli_num_rows($mysqli) >= 0) {
-                    $member_count = mysqli_num_rows($mysqli);
+        $user_id = $_SESSION['user_id'];
+        $sqlstmt = "SELECT * FROM `user` JOIN `plan` ON `user`.`plan_id` = `plan`.`plan_id` WHERE `user_id` = '$user_id'";
+        $execstmt = mysqli_query($connect, $sqlstmt);
+        $fetcharr = mysqli_fetch_assoc($execstmt);
+        $plan_id = $fetcharr['plan_id'];
+        $role_id = $fetcharr['role_id'];
+        if ($role_id == 1) {
+            if (isset($_POST['submit'])) {
+                // $first_name = $_POST['first_name'];
+                // $last_name = $_POST['last_name'];
+                $email = mysqli_real_escape_string($connect,$_POST['email']);
 
-                    if ($limitMember > $member_count) {
-                        $select = "SELECT * FROM `user` WHERE `email` = '$email'";
-                        $run_select = mysqli_query($connect, $select);
-                        $rows = mysqli_num_rows($run_select);
+                $planMember = "SELECT * FROM `plan` WHERE `plan_id` = $plan_id";
+                $run_plan = mysqli_query($connect, $planMember);
+                if ($run_plan && mysqli_num_rows($run_plan) > 0) {
+                    $fetch_plan = mysqli_fetch_assoc($run_plan);
+                    $limitMember = $fetch_plan['limit'];
 
-                        if ($rows === 0) {
-                            $error = "This member is not registered.";
-                        } elseif ($rows > 0) {
-                            $fetch_user = mysqli_fetch_assoc($run_select);
-                            $found_id = $fetch_user['user_id'];
+                    $pro = "SELECT * FROM `project_member` WHERE `project_id` = $project_id";
+                    $mysqli = mysqli_query($connect, $pro);
+                    if ($mysqli && mysqli_num_rows($mysqli) >= 0) {
+                        $member_count = mysqli_num_rows($mysqli);
 
-                            // Check if the user is already in the project
-                            $select_project_member = "SELECT * FROM `project_member` WHERE `user_id` = $found_id AND `project_id` = $project_id";
-                            $run_project_member_check = mysqli_query($connect, $select_project_member);
+                        if ($limitMember > $member_count) {
+                            $select = "SELECT * FROM `user` WHERE `email` = '$email'";
+                            $run_select = mysqli_query($connect, $select);
+                            $rows = mysqli_num_rows($run_select);
 
-                            if (mysqli_num_rows($run_project_member_check) === 0) {
-                                // Insert the member into the project
-                                $insert1 = "INSERT INTO `project_member`(`user_id`, `project_id`) VALUES ('$found_id', '$project_id')";
-                                $run_insert1 = mysqli_query($connect, $insert1);
+                            if ($rows === 0) {
+                                $error = "This member is not registered.";
+                            } elseif ($rows > 0) {
+                                $fetch_user = mysqli_fetch_assoc($run_select);
+                                $found_id = $fetch_user['user_id'];
 
-                                if ($run_insert1) {
-                                    header("Location: editproject.php?pid=$project_id");
+                                // Check if the user is already in the project
+                                $select_project_member = "SELECT * FROM `project_member` WHERE `user_id` = $found_id AND `project_id` = $project_id";
+                                $run_project_member_check = mysqli_query($connect, $select_project_member);
+
+                                if (mysqli_num_rows($run_project_member_check) === 0) {
+                                    // Insert the member into the project
+                                    $insert1 = "INSERT INTO `project_member`(`user_id`, `project_id`) VALUES ('$found_id', '$project_id')";
+                                    $run_insert1 = mysqli_query($connect, $insert1);
+
+                                    if ($run_insert1) {
+                                        header("Location: editproject.php?pid=$project_id");
+                                    } else {
+                                        $error = "This member could not be inserted.";
+                                    }
                                 } else {
-                                    $error = "This member could not be inserted.";
+                                    $error = "This member is already in the project.";
                                 }
-                            } else {
-                                $error = "This member is already in the project.";
                             }
+                        } else {
+                            $error = "You can only add up to $limitMember members.";
                         }
                     } else {
-                        $error = "You can only add up to $limitMember members.";
+                        $error = "Error fetching project members.";
                     }
                 } else {
-                    $error = "Error fetching project members.";
+                    $error = "Error fetching plan details.";
                 }
-            } else {
-                $error = "Error fetching plan details.";
             }
+        
+        }elseif($role_id == 2){
+            $error="only a leader can add members to this project";
         }
-    
-    }elseif($role_id == 2){
-        $error="only a leader can add members to this project";
     }
 }
 ?>
