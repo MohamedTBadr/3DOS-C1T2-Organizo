@@ -25,8 +25,10 @@ if (isset($_SESSION['user_id'])) {
     if (mysqli_num_rows($run_select) > 0) {
         $fetch = mysqli_fetch_assoc($run_select);
         $status = $fetch['status'];
-        $end = $fetch['end_date']; // End date of the subscription
+        $end_date=date("Y-m-d", strtotime($fetch["end_date"]));
+        // $end = $fetch['end_date']; // End date of the subscription
         $current_date = date("Y-m-d");
+        
   
         // Check if the subscription is active and past the end date
         if ($status == 'active' && $current_date > $end) {
@@ -136,7 +138,7 @@ if (isset($_SESSION['user_id'])) {
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="./my_tasks.php">My Tasks</a></li>
-                                <li><a class="dropdown-item" href="./calendar.php">Calendar</a></li>
+                                <!-- <li><a class="dropdown-item" href="./calendar.php">Calendar</a></li> -->
                                 <li><a class="dropdown-item" href="./archive_taskss.php">Archive</a></li>
                             </ul>
                         </li>
@@ -530,8 +532,6 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="single-fun">
                                         <div class="content">
                                             <i class="fa fa-solid fa-heart"></i>
-                                        
-
                                             <span class="counter"><?php echo $num_t ?></span>
                                             <p>tasks</p>
                                         </div>
@@ -746,7 +746,7 @@ if (isset($_SESSION['user_id'])) {
             <ul class="social-icons">
               <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+              <li><a class="dribbble" href="#"><i class="fa fa-github"></i></a></li>
               <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
             </ul>
           </div>
