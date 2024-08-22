@@ -5,7 +5,10 @@ if(!isset($_SESSION['user_id'])){ // imagine accessing userprof.php while LOGGED
   header("Location: index.php");
 }
 $userid = $_SESSION['user_id'];
-$select="SELECT * FROM `user` join `plan` on `user`.`plan_id`=`plan`.`plan_id` WHERE `user`.`user_id`='$userid'";
+$select="SELECT * FROM `user` 
+join `plan` on `user`.`plan_id`=`plan`.`plan_id` 
+join `subscription` on `plan`.`plan_id`= `subscription`.`plan_id`
+WHERE `user`.`user_id`='$userid'";
 $run=mysqli_query($connect,$select);
 $fetch=mysqli_fetch_assoc($run);
 
@@ -16,6 +19,7 @@ $fetch=mysqli_fetch_assoc($run);
     $phone_number=$fetch['phone_number'];
     $role=$fetch['role_id'];
     $plane_name=$fetch['plan_type'];
+    $status=$fetch['status'];
     $image=$fetch['image'];
 
 $select_p="SELECT *  FROM `project` WHERE `user_id` = '$userid'";
@@ -50,11 +54,14 @@ $num_f=mysqli_num_rows($run_select_f);
                 E-mail: <span class="stat-number"><?php echo $email;?></span>
                 <br><br>
                 <span class="stat-module">
-                   Phone: <span class="stat-number"><?php echo$phone_number;?></span>
-              </span>
+                    Phone: <span class="stat-number"><?php echo$phone_number;?></span>
+                </span>
                 <br><br>
               <span class="stat-module">
                 Current plan: <span class="stat-number"><?php echo$plane_name ;?></span>
+              </span>
+              <span class="stat-module">
+                Status: <span class="stat-number"><?php echo " ".$status ;?></span>
               </span>
               
             </div>
