@@ -1,6 +1,10 @@
 <?php
 // include("connection.php");
 include("nav.php");
+
+if(!isset($_SESSION['user_id']))
+    header ("Location: index.php");
+
 $user_id=$_SESSION['user_id'];
 $select_user = "SELECT * FROM `user` 
                 JOIN `plan` ON `user`.`plan_id` = `plan`.`plan_id`
@@ -42,6 +46,7 @@ $resAllPlans = mysqli_query($connect, $allPlans);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Plans</title>
     <link rel="stylesheet" href="css/subscription.css">
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
 </head>
 
 <body>

@@ -95,6 +95,8 @@ if (isset($_SESSION['user_id'])) {
         }
     }
 }
+else if(!isset($_SESSION['user_id']))
+    header ("Location: index.php");
 
 if (isset($_POST['search'])) {
     $text = $_POST['text'];

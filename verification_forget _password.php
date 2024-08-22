@@ -78,8 +78,8 @@ if (isset($_POST['resend'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>verification page</title>
-
+    <title>Verification Page</title>
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
     <link rel="stylesheet" href="./css/verification.css">
 </head>
 

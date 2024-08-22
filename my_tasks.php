@@ -5,7 +5,9 @@ include("nav.php");
 //     $sprint_id=$_GET['sprint_id'];
 // }
 
-// $sprint_id = 9; // when $_GET that gets the sprint_id is done comment this line 
+if(!isset($_SESSION['user_id']))
+    header ("Location: index.php");
+
 $user_id=$_SESSION['user_id'];
 
 $select1 = "SELECT * FROM `task` 
@@ -75,7 +77,6 @@ if (isset($_POST['submit'])) {
         <div class="column">
             <div class="head d-flex justify-content-between w-75 m-auto mb-3">
                 <h2>On-Track</h2>
-                <!-- <a href="./add-task.php" type="button" class="btn btn-outline-secondary">+ add task</a> -->
             </div>
             <?php foreach ($Run1 as $key) { ?>
             <div class="card">
@@ -126,7 +127,6 @@ if (isset($_POST['submit'])) {
         <div class="column">
             <div class="head d-flex justify-content-between w-75 m-auto mb-3">
                 <h2>At-Risk</h2>
-                <!-- <a href="./add-task.php" type="button" class="btn btn-outline-secondary">+ add task</a> -->
             </div>
             <?php foreach ($Run2 as $key) { ?>
             <div class="card">
@@ -177,7 +177,6 @@ if (isset($_POST['submit'])) {
         <div class="column">
             <div class="head d-flex justify-content-between w-75 m-auto mb-3">
                 <h2>Done</h2>
-                <!-- <a href="./add-task.php" type="button" class="btn btn-outline-secondary">+ add task</a> -->
             </div>
             <?php foreach ($Run3 as $key) { ?>
             <div class="card">

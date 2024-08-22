@@ -57,6 +57,7 @@ else
     <title>
         Add Project
     </title>
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
     <link rel="stylesheet" type="text/css" href="css/add-project.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"

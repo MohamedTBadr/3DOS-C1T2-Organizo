@@ -1,15 +1,12 @@
 <?php
 // include("connection.php");
 include ('nav.php');
+
+if(!isset($_SESSION['user_id'], $_GET['sid']))
+    header ("Location: index.php");
+
 if(isset($_GET['sid'])) {
     $sprint_id = $_GET['sid'];
-
-    
-
-//$sprint_id = 1;
-//$role_id=1;
-//$user_id=5;
-
     $user_id = $_SESSION['user_id'];
     $role_id = $_SESSION['role_id'];
     $select1 = "SELECT * FROM `task` 
@@ -88,7 +85,7 @@ if(isset($_POST['search'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3 Column Layout</title>
+    <title>Tasks</title>
     <!-- font awesome -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
