@@ -209,7 +209,7 @@ if(isset($_SESSION['user_id']))
             if(in_array($currpage, $SRCHPages)) { ?>
 			<form method="POST">
 				<div class="form-input">
-					<input type="search" placeholder="Search..." name="text">
+					<input type="search" placeholder="Search..." name="text" value="<?php echo isset($_POST['text']) ? $_POST['text'] : ''?>">
 					<button type="submit" class="search-btn" name="search"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>

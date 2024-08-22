@@ -117,6 +117,12 @@ if(isset($_POST['search'])){
     $text=$_POST['text'];
     $select_search="SELECT * FROM sprint WHERE (sprint_name LIKE '%$text%') AND `project_id` = $pid";
     $run_select_search=mysqli_query($connect,$select_search);
+    $num_rows = mysqli_num_rows($run_select_search);
+    $total_search_pages = ceil($num_rows / $limit);
+    $offset = ($page - 1) * $limit;
+
+    $select_search = "SELECT * FROM sprint WHERE (sprint_name LIKE '%$text%') AND `project_id` = $pid LIMIT $limit OFFSET $offset";
+    $run_select_search = mysqli_query($connect, $select_search);
 }
 ?>
 
@@ -159,7 +165,7 @@ if(isset($_POST['search'])){
             <div class="pricing-card">
                 <a href="tasks.php?sid=<?php echo $dataa['sprint_id'] ?>">
                     <div class="d-flex mb-3">
-                        <h2 class="card-title"><?php echo $dataa['sprint_name'] ?></h2>
+                        <h2 class="card-title" style="color: #212529 !important;"><?php echo $dataa['sprint_name'] ?></h2>
                         <div class="ms-4">
                             <button type="button" class="icon"><a href="editsprints.php?sid=<?php echo $dataa['sprint_id'] ?>"><i class="fa-regular fa-pen-to-square"></i></a></button>
                             <form method="GET" style="display: inline">
@@ -233,6 +239,11 @@ if(isset($_POST['search'])){
 
   <ul class="pagination">
   <?php
+    if(isset($_POST['search']))
+        $total_pages = $total_search_pages;
+    else
+        $total_pages = ceil($num_rows / $limit);
+
     if(isset($_GET['page']))
       $currentPage = $_GET['page'];
     else
