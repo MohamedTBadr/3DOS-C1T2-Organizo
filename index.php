@@ -48,7 +48,8 @@ if (isset($_SESSION['user_id'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Add Project</title>
+    <title>Organizo</title>
+
 
 
 
@@ -60,8 +61,8 @@ if (isset($_SESSION['user_id'])) {
     <!--  -->
 
     <!-- Favicon -->
-    <!--<link rel="icon" href="img/card-favorite.svg">-->
     <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
+<!--<link rel="icon" href="img/card-favorite.svg">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS FILES -->
