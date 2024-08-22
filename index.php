@@ -48,8 +48,7 @@ if (isset($_SESSION['user_id'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Organizo</title>
-
+    <title>organizo</title>
 
 
 
@@ -61,8 +60,7 @@ if (isset($_SESSION['user_id'])) {
     <!--  -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
-<!--<link rel="icon" href="img/card-favorite.svg">-->
+    <link rel="icon" href="img/card-favorite.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS FILES -->
@@ -94,22 +92,20 @@ if (isset($_SESSION['user_id'])) {
 			        <!-- <i class='bx bxl-slack'></i> -->
 
                     <span class="navbar-brand-text">
-                        Organizo
+                        organizo
                         <!-- <small></small> -->
                     </span>
                 </a>
                 <?php if(!isset($_SESSION['user_id'])){ ?>
                 <div class="d-lg-none ms-auto me-3">
-                    <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="./login.php?LC=1"
-                        role="button" aria-controls="offcanvasExample">Login <a href="login.php?LC=1">Login</a></a>
+                    <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="./login.php"
+                        role="button" aria-controls="offcanvasExample"> Login</a>
                 </div>
                 <?php } ?>
-                <?php if(isset($_SESSION['user_id'])) {?>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <?php } ?>
 
             <?php if(isset($_SESSION['user_id'])){ ?>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -123,11 +119,11 @@ if (isset($_SESSION['user_id'])) {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="./projects.php">Projects</a>
+                            <a class="nav-link click-scroll" href="./projects.php">projects</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="./subscription.php">Subscribe</a>
+                            <a class="nav-link click-scroll" href="./subscription.php">subscribe</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -144,7 +140,7 @@ if (isset($_SESSION['user_id'])) {
             <?php }else{ ?>
                     <div class="d-none d-lg-block ms-lg-3">
                         <a class="btn custom-btn custom-border-btn" role="button"
-                            aria-controls="offcanvasExample" href="./login.php?LC=1">Login</a>
+                            aria-controls="offcanvasExample" href="./login.php">Login</a>
                     </div>
                 </div>
             <?php } ?>
@@ -156,7 +152,7 @@ if (isset($_SESSION['user_id'])) {
 
         <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
 
-            <div class="section-overlay"></div>
+            <div class="section-overlay "></div>
 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#6db1a6" fill-opacity="1"
@@ -164,10 +160,10 @@ if (isset($_SESSION['user_id'])) {
                 </path>
             </svg>
 
-            <div class="container">
-                <div class="row">
+            <div class="container my-5">
+                <div class="row my-5">
 
-                    <div class="col-lg-6  col-12 mb-5 mb-lg-0">
+                    <div class="col-lg-6  col-12  mb-lg-0 my-5">
                         <h2 class="text-white">Welcome </h2>
 
                         <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
@@ -191,14 +187,11 @@ if (isset($_SESSION['user_id'])) {
                         <?php } ?>
                     </div>
 
-                    <!-- <div class="col-lg-6 col-12">
+                    <div class="col-lg-6 col-12 mb-5 my-5">
                         <div class="ratio ratio-16x9">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/MGNgbNGOzh8"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
+                          <img src="img/2.png" alt="">
                         </div>
-                    </div> -->
+                    </div>
 
                 </div>
             </div>
@@ -230,7 +223,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div>
                                 <h5 class="fs-8 fw-bold lh-lg mb-1"> Unlimited Projects </h5>
-                                <p class="lh-xl mb-0">Conduct unlimited Projects with us for better business operations.
+                                <p class="lh-xl mb-0">Conduct unlimited Project with us for better business operations.
                                 </p>
                             </div>
                         </div>
@@ -268,15 +261,15 @@ if (isset($_SESSION['user_id'])) {
                             <div class="row justify-content-center justify-content-lg-start ">
                                 <div class="col-sm-10 col-md-8 col-lg-11">
                                     <h2 class="fs-4 fs-lg-3 fw-bold mb-2 text-center text-white  text-lg-start"> Organize remote
-                                        teams fast & with ease.</h2>
+                                        team fast & easily.</h2>
                                     <p class="fs-8 mb-4 mb-lg-5 lh-lg text-center text-white  text-lg-start fw-normal">Organizing
                                         and managing your remote
                                         teams has never been this easy!</p>
                                 </div>
                                 <div class="col-sm-10 col-md-8 col-lg-12">
                                     <div class="mb-x1 mb-lg-3">
-                                        <h5 class="fs-8 fw-bold text-white lh-lg mb-1">Create Unlimited Tasks</h5>
-                                        <p class="b-0 lh-xl text-white">Create unlimited Tasks and boost productivity with
+                                        <h5 class="fs-8 fw-bold text-white lh-lg mb-1">Create Unlimited Teams </h5>
+                                        <p class="b-0 lh-xl text-white">Create unlimited teams and boost productivity with
                                             efficient collaboration.</p>
                                     </div>
                                     <div>
@@ -297,14 +290,14 @@ if (isset($_SESSION['user_id'])) {
         </section>
 
         <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path fill="#6db1a6" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z" stroke-width="0"></path>
-            <path fill="#6db1a6" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z" stroke-width="0">
+            <path fill="#054552" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z" stroke-width="0"></path>
+            <path fill="#054552" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z" stroke-width="0">
             </path>
-            <path fill="#6db1a6" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z" stroke-width="0">
+            <path fill="#054552" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z" stroke-width="0">
             </path>
-            <path fill="#6db1a6" d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"
+            <path fill="#054552" d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"
                 stroke-width="0"></path>
-            <path fill="#6db1a6" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z" stroke-width="0">
+            <path fill="#054552" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z" stroke-width="0">
             </path>
         </svg>
 
@@ -383,7 +376,7 @@ if (isset($_SESSION['user_id'])) {
 
         <!-- BEG OF WHY  -->
 
-        <section class="experience hiddensec position-relative overflow-hidden bg-color" id="service">
+        <section class="experience hiddensec position-relative overflow-hidden bg-color " id="service">
             <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
                     stroke-width="0"></path>
@@ -406,7 +399,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8 col-lg-7 mt-5">
+                    <div class="col-md-8 col-lg-7 ">
                         <h2 class="fs-3 fs-lg-3 fw-bold text-center text-white mb-5 mb-lg-9 lh-sm">We made Organizo to
                             solve your
                             problems.</h2>
@@ -438,7 +431,9 @@ if (isset($_SESSION['user_id'])) {
                                     src="img/share-svgrepo-com (1).svg" alt=""> -->
                                 <div>
                                     <h5 class="fs-8 text-white lh-lg fw-bold">File Sharing</h5>
-                                    <p class="text-white text-opacity-50 lh-xl mb-0">Easily share files where necessary.</p>
+                                    <p class="text-white text-opacity-50 lh-xl mb-0">Easily share files where necessary
+                                        and keep them safe
+                                        with enhanced security and protection.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 d-flex align-items-start gap-2">
@@ -446,7 +441,7 @@ if (isset($_SESSION['user_id'])) {
                                     src="img/chart-column-grow-svgrepo-com.svg" alt="" > -->
                                 <div>
                                     <h5 class="fs-8 text-white lh-lg fw-bold">Increase Profit</h5>
-                                    <p class="text-white text-opacity-50 lh-xl mb-0">Increase your profit of your
+                                    <p class="text-white text-opacity-50 lh-xl mb-0">increase your profit of your
                                         projects and your company</p>
                                 </div>
                             </div>
@@ -463,14 +458,19 @@ if (isset($_SESSION['user_id'])) {
                             <div class="col-12 col-md-6 col-lg-4 d-flex align-items-start gap-2">
                                 <!-- <img class="imgwhy"
                                     src="img/payment-request-api-svgrepo-com.svg" alt="" > -->
+                                <div>
+                                    <h5 class="fs-8 text-white lh-lg fw-bold">Payment System</h5>
+                                    <p class="text-white text-opacity-50 lh-xl mb-0">With its easy payment system create
+                                        invoices and get
+                                        paid all at the same place.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="position-absolute top-0 start-0 end-0">
-                <div class="bg-white  py-md-9 py-xl-10"> </div><img class="wave" src="img/Wave_2.svg" alt="" />
-            </div>
+            
+
         </section>
         <!-- end of why -->
 
@@ -547,15 +547,15 @@ if (isset($_SESSION['user_id'])) {
                     <!--/ End Fun-facts -->
 
             <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path fill="#6db1a6" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
+                <path fill="#054552" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
                     stroke-width="0"></path>
-                <path fill="#6db1a6" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z"
+                <path fill="#054552" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z"
                     stroke-width="0"></path>
-                <path fill="#6db1a6" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z"
+                <path fill="#054552" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z"
                     stroke-width="0"></path>
-                <path fill="#6db1a6"
+                <path fill="#054552"
                     d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z" stroke-width="0"></path>
-                <path fill="#6db1a6" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z"
+                <path fill="#054552" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z"
                     stroke-width="0"></path>
             </svg>
         </section>
@@ -622,11 +622,11 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expand="true"
                                             aria-controls="collapse1" data-accordion-button="data-accordion-button">How
-                                            can I create a new project?</button></h2>
+                                            do i create a new project?</button></h2>
                                     <div class="accordion-collapse collapse show" id="collapse1"
                                         data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">Click the "+ Add Project" button,
-                                            give it a name, and add your team members by clicking "Edit" then "Add Member"</div>
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">Click the "Create Project" button,
+                                            give it a name, and add your team members</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -634,10 +634,11 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse2"
                                             aria-expand="false" aria-controls="collapse2"
-                                            data-accordion-button="data-accordion-button">How can I assign tasks to team
+                                            data-accordion-button="data-accordion-button">How can i assign tasks to team
                                             members?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">Create a task by clicking "Add Task", and choose an assignee out of the team members of said project.
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">Create a task , select the "Add
+                                            member" option and choose the person responsible
                                         </div>
                                     </div>
                                 </div>
@@ -646,11 +647,11 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse3"
                                             aria-expand="false" aria-controls="collapse3"
-                                            data-accordion-button="data-accordion-button">How do I track progress and
-                                            see what's been completed?</button></h2>
+                                            data-accordion-button="data-accordion-button">How do i track progress and
+                                            see whats been completed?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse3" data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">On the sprint page view the
-                                            progress of each task, with completed tasks marked as done, you can also check you calendar which packs everything at one place!</div>
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">in the project page show the
+                                            progress of each task , with completed tasks marked as finished</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -658,10 +659,10 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse4"
                                             aria-expand="false" aria-controls="collapse4"
-                                            data-accordion-button="data-accordion-button">Can I communicate with my team
+                                            data-accordion-button="data-accordion-button">Can i communicate with my team
                                             within the project ?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse4" data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">Yes, you can leave comments on
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">yes, you can leave comments on
                                             tasks </div>
                                     </div>
                                 </div>
@@ -670,7 +671,7 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse5"
                                             aria-expand="false" aria-controls="collapse5"
-                                            data-accordion-button="data-accordion-button">How can I reach your
+                                            data-accordion-button="data-accordion-button">How can I get  to your
                                             support?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse5" data-bs-parent="#accordion">
                                         <div class="accordion-body lh-xl pt-0 pb-x1">To reach our support team, simply
@@ -758,11 +759,7 @@ if (isset($_SESSION['user_id'])) {
 
     <!-- Get Pro Button -->
     <ul class="pro-features">
-        <?php if(isset($_SESSION['user_id'])) {?>
         <a class="get-pro" href="./subscription.php">GET PRO</a>
-        <?php } else { ?>
-        <a class="get-pro" href="./login.php">GET PRO</a>
-        <?php } ?>
         <li class="big-title">Bronze</li>
         <li class="big-title">Silver</li>
         <li class="title">Gold</li>
