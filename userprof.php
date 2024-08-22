@@ -5,22 +5,35 @@ if(!isset($_SESSION['user_id'])){ // imagine accessing userprof.php while LOGGED
   header("Location: index.php");
 }
 $userid = $_SESSION['user_id'];
-$select="SELECT * FROM `user` 
-join `plan` on `user`.`plan_id`=`plan`.`plan_id` 
-join `subscription` on `plan`.`plan_id`= `subscription`.`plan_id`
-WHERE `user`.`user_id`='$userid'";
+$select = "SELECT * FROM `user` 
+            LEFT JOIN `plan` ON `user`.`plan_id` = `plan`.`plan_id` 
+            LEFT JOIN `subscription` ON `plan`.`plan_id` = `subscription`.`plan_id` 
+            WHERE `user`.`user_id` = '$userid'";
 $run=mysqli_query($connect,$select);
-$fetch=mysqli_fetch_assoc($run);
+$fetch = mysqli_fetch_assoc($run);
 
-    $first_name=$fetch['first_name'];
-    $last_name=$fetch['last_name'];
-    $password=$fetch['password'];
-    $email=$fetch['email'];
-    $phone_number=$fetch['phone_number'];
-    $role=$fetch['role_id'];
-    $plane_name=$fetch['plan_type'];
-    $status=$fetch['status'];
-    $image=$fetch['image'];
+if (isset($fetch) && !is_null($fetch)) {
+    $first_name = $fetch['first_name'];
+    $last_name = $fetch['last_name'];
+    $password = $fetch['password'];
+    $email = $fetch['email'];
+    $phone_number = $fetch['phone_number'];
+    $role = $fetch['role_id'];
+    $plane_name = $fetch['plan_type'];
+    $plan_id = $fetch['plan_id'];
+    $image = $fetch['image'];
+
+    if (isset($fetch['status'])) {
+        $status = $fetch['status'];
+    } else {
+        $status = 'Not Active';
+    }
+
+    // ...
+} else {
+    // Handle the case where $fetch is null
+    echo "No user data found";
+}
 
 $select_p="SELECT *  FROM `project` WHERE `user_id` = '$userid'";
 $run_select_p=mysqli_query($connect,$select_p);
