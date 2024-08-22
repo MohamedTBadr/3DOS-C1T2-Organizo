@@ -133,7 +133,7 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
   <div class="row g-3">
     <div class="col-sm-6">
       <div class="center">
-        <img src="img/<?php echo $fetch_image_assigned_by['image']; ?>" class="pp" alt="profile pic">
+        <img src="img/profile/<?php echo $fetch_image_assigned_by['image']; ?>" class="pp" alt="profile pic">
         <h6 class="ms-2">Assign By:
           <?php echo $task['assign_by_first_name']. " " . $task['assign_by_last_name']; ?>
         </h6>
@@ -146,7 +146,7 @@ $fetch_image_assignie = mysqli_fetch_assoc($run_select_assignie);
     </div>
     <div class="col-sm-6 ">
       <div class="center">
-        <img src="img/<?php echo $fetch_image_assignie['image']; ?>>" class="pp" alt=>
+        <img src="img/profile/<?php echo $fetch_image_assignie['image']; ?>" class="pp" alt=>
         <h6 class="ms-2">
           Assignee:
           <?php echo $task['assignie_first_name'] . " " . $task['assignie_last_name']; ?>
