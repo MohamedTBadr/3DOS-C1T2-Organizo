@@ -111,7 +111,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link " href="./userprof.php">Home</a>
+                            <a class="nav-link " href="./index.php">Home</a>
                         </li>
 
                         <li class="nav-item">
@@ -131,7 +131,7 @@ if (isset($_SESSION['user_id'])) {
                                 data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="./tasks.php">Tasks</a></li>
+                                <li><a class="dropdown-item" href="./my_tasks.php">My Tasks</a></li>
                                 <li><a class="dropdown-item" href="./calendar.php">Calendar</a></li>
                                 <li><a class="dropdown-item" href="./archive_taskss.php">Archive</a></li>
                             </ul>
