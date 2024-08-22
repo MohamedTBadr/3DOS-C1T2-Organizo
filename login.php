@@ -5,6 +5,8 @@ include 'mail.php';
 $Smsg = '';
 if (isset($_POST['sign-btn']))
 {
+  if(isset($_GET['LC']))
+    $_GET['LC'] = '';
   $first_name = mysqli_real_escape_string($connect, $_POST['firstname']);
   $last_name =mysqli_real_escape_string($connect, $_POST['lastname']);
   $email =mysqli_real_escape_string($connect, $_POST['sign-email']);
@@ -164,7 +166,7 @@ if (isset($_POST['login']))
 </head>
 <body>
 	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true" <?php if (($loginError) || isset($_SESSION['logCHK']) || isset($_GET['LC'])) echo 'checked'; ?>>
+		<input type="checkbox" id="chk" aria-hidden="true" <?php if (($loginError) || isset($_SESSION['logCHK']) || (isset($_GET['LC'])) && $_GET['LC'] == 1 )echo 'checked'; ?>>
 
 			<div class="signup">
 				<form method="post">

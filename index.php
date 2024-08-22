@@ -143,7 +143,7 @@ if (isset($_SESSION['user_id'])) {
             <?php }else{ ?>
                     <div class="d-none d-lg-block ms-lg-3">
                         <a class="btn custom-btn custom-border-btn" role="button"
-                            aria-controls="offcanvasExample" href="./login.php">Login</a>
+                            aria-controls="offcanvasExample" href="./login.php?LC=1">Login</a>
                     </div>
                 </div>
             <?php } ?>
