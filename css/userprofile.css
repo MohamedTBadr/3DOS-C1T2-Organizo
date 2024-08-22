@@ -39,13 +39,13 @@ html {
   zoom: 1;
 }
 
-.container {
+/* .container {
   box-shadow: 0 0 50px rgba(0, 0, 0, .3);
   margin: 40px auto;
   overflow: hidden;
   width: 100vh;
   padding: 0;
-}
+} */
 
 .header-container {
   position: relative;
@@ -95,7 +95,7 @@ html {
 .header {
   color: #fff;
   padding: 15px;
-  height: 300px;
+  height: 50vh;
 }
 
 .header>svg {
@@ -124,7 +124,7 @@ html {
 
 .stat-module {
   display: inline-block;
-  font-size: 12px;
+  font-size: large;
   margin-right: 20px;
   text-transform: uppercase;
 }
@@ -137,7 +137,7 @@ html {
 
 .overlay-header {
   background-color: #eee;
-  height: 120px;
+  height: 200px;
   margin: -50px 0 0 -25%;
   transform: rotate(-10deg);
   width: 150%;
@@ -147,24 +147,24 @@ html {
 .body {
   background-color: #eee;
   color: #555;
-  margin-top: -50px;
+  margin-top: -100px;
   padding: 0 15px 15px;
   position: relative;
-  /* height: 100vh; */
-  /* background-size: cover; */
+  background-size: cover;
 }
 body{
   height: 100vh;
 }
+
 .body-image {
   border-radius: 100%;
   box-shadow: 5px 10px 75px rgba(0, 0, 0, .4);
   float: left;
-  margin: -90px 0 20px;
+  margin: -150px 0 50px 50px;
   position: relative;
   z-index: 2;
-  height: 80px;
-  width: 87px;
+  height: 20vh;
+  width: 20vh;
 }
 
 .body-action-button {
@@ -181,8 +181,8 @@ body{
 
 .body-stats {
   display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: x-large;
+  /* font-weight: 700; */
   float: left;
   margin: -20px 0 0 59px;
   position: relative;
@@ -238,7 +238,7 @@ body{
   padding: 10px;
 }
 
-.card-heading {
+/* .card-heading {
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -254,7 +254,7 @@ body{
   overflow-x: scroll;
   padding: 0;
   white-space: nowrap;
-}
+} */
 
 .card-list::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
@@ -284,7 +284,8 @@ body{
 
 svg {
   color: #F5F5F5;
-  margin-top: -40px;
+  margin-top: -48px;
+  margin-right: 10px;
 }
 
 
@@ -378,6 +379,7 @@ button:hover {
 .iconsvg {
   height: 40px;
   width: 40px;
+
 }
 .txt {
   /* background-color: red; */
@@ -385,7 +387,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 34px;
+  height: 100px;
 }
 @media(max-width:750px){
   .container{

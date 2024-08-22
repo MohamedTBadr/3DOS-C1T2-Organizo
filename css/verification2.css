@@ -1,0 +1,9 @@
+.resend{
+    cursor: pointer;
+    border: none !important;
+    background-color: transparent !important;
+    color: #db9600;
+    padding-bottom: 5% !important ;
+    padding-left: 5% !important;
+    transition: all 0.5s;
+}
