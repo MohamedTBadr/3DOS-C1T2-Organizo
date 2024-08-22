@@ -67,10 +67,9 @@ if (!isset($_GET['pid'], $_SESSION['user_id'])) {
         $plan_id = $fetcharr['plan_id'];
         $role_id = $fetcharr['role_id'];
         if ($role_id == 1) {
-            if ($fetch_subscription) {
-                if ($fetch_subscription['status'] === 'not active') {
-                    $error = "Your Plan is Not Active. Please Renew Your plan!";
-            }} else{
+            if (($fetch_subscription['status']) == 'not active'){
+                $error= "Your PLan is Not Active. Please Renew Your plan!";
+            }else{
 
                 if (isset($_POST['submit'])) {
                     // $first_name = $_POST['first_name'];
