@@ -1,7 +1,6 @@
 <?php             
 include 'connection.php'; 
 
-// $assign=33;
 if(!isset($_SESSION['user_id']))
     header ("Location: index.php");
 $assign=$_SESSION['user_id'];

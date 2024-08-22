@@ -4,6 +4,10 @@ $error="";
 $firstname="";    
 $lastname="";    
 $phone_number="";
+
+if(!isset($_SESSION['user_id']))
+    header ("Location: index.php");
+
 $userid=$_SESSION['user_id'];
 $select="SELECT * FROM `user` WHERE `user_id`=$userid";
 $run_select=mysqli_query($connect,$select);

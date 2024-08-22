@@ -2,6 +2,9 @@
 // include("connection.php");
 include("nav.php");
 
+if(!isset($_SESSION['user_id']))
+    header ("Location: index.php");
+
 if(isset($_GET['task_id'])){
   $task_id=$_GET['task_id'];
 }

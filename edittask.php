@@ -4,6 +4,8 @@ include("connection.php");
 // $select="SELECT * FROM `task` WHERE `task_id` = '$task_id'";
 // $run= mysqli_query($connect, $select);
 $error="";
+if(!isset($_SESSION['user_id']))
+    header ("Location: index.php");
 
 $task_name='';
 $task_status='';

@@ -148,7 +148,7 @@ if (isset($_POST['login']))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>login - signup</title>
+	<title>Login - Signup</title>
     <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
 	<link rel="stylesheet" type="" href="css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">

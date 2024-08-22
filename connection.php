@@ -14,10 +14,6 @@ if(isset($_POST['logout'])){
     header("location:index.php");
 }
 
-// if($connect){
-//     echo "done";
-// }
-
 $link=$_SERVER['REQUEST_URI'];
 // echo $link;
 $url=explode('/', $link);

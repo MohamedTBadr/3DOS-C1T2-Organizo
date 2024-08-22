@@ -118,7 +118,7 @@ if (isset($_POST['resend']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Page</title>
+    <title>Signup Verification</title>
     <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/verification.css">

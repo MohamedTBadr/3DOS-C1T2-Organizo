@@ -3,7 +3,7 @@ include("connection.php");
 
 $msg = '';
 $done="";
-if(!isset($_GET['sid'])) 
+if(!isset($_GET['sid'], $_SESSION['user_id']))
 {
     header("Location: index.php");
 }

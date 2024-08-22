@@ -1,7 +1,8 @@
 <?php
 include("nav.php");
 
-if(!isset($_SESSION['user_id'])){ // imagine accessing userprof.php while LOGGED OUT
+if(!isset($_SESSION['user_id']))
+{ // imagine accessing userprof.php while LOGGED OUT
   header("Location: index.php");
 }
 $userid = $_SESSION['user_id'];

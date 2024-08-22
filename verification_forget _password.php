@@ -1,6 +1,12 @@
 <?php
 include 'mail.php';
 $error="";
+
+if(!isset($_SESSION['otp'])) // can't hop on the flow uninvited and empty handed
+{
+    header("Location: index.php");
+}
+
 $rand1=$_SESSION['otp'];
 $email=$_SESSION['email'];
 $old_time=$_SESSION['time'];
