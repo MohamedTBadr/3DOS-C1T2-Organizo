@@ -46,10 +46,10 @@ if ($count > 0) {
         
         // Assign colors based on priority
         if ($data_row['priority_id'] == 1) {
-            $data_arr[$i]['bg_color'] = '#033043'; // Dark Blue
+            $data_arr[$i]['bg_color'] = '#044763'; // Dark Blue
             $data_arr[$i]['color'] = '#ffffff';
         } elseif ($data_row['priority_id'] == 2) {
-            $data_arr[$i]['bg_color'] = '#FDA521'; // Orange
+            $data_arr[$i]['bg_color'] = '#f3ab3f'; // Orange
             $data_arr[$i]['color'] = '#ffffff';
         } elseif ($data_row['priority_id'] == 3) {
             $data_arr[$i]['bg_color'] = '#E9E3D5'; // Yellow
