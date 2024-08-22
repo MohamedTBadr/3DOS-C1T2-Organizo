@@ -41,14 +41,18 @@
 }
 
 .bg-color{
-  background-color: #6db1a6;
+  background-color: #054552;
 }
 
 .container2{
-  background-color: #6db1a6;
+  background-color: #054552;
 }
 
-
+.accordion-button:focus {
+  z-index: 3;
+  outline: 0;
+  box-shadow: var(#fda5218c);
+}
 
 .imgfeat2{
   border-radius: 10px;
@@ -1366,7 +1370,8 @@ button:not(.collapsed) {
 	line-height: 45px;
 	font-size: 14px;
 	border-radius: 5px 0 0 5px;
-	background:#033043;
+	background:white;
+  color: white;
 	text-align: center;
 	color: #fff;
 	top: 0;
@@ -1375,7 +1380,7 @@ button:not(.collapsed) {
   color: #eceeef;
 }
 .get-pro:hover{
-	
+	/* color: #E07A5F; */
 }
 
 /* fun fact  */
