@@ -49,16 +49,17 @@ if ($count > 0) {
             $data_arr[$i]['color'] = '#ffffff';
         } elseif ($data_row['priority_id'] == 2) {
             $data_arr[$i]['bg_color'] = '#FDA521'; // Orange
-            $data_arr[$i]['color'] = '#000000';
+            $data_arr[$i]['color'] = '#ffffff';
         } elseif ($data_row['priority_id'] == 3) {
             $data_arr[$i]['bg_color'] = '#E9E3D5'; // Yellow
-            $data_arr[$i]['color'] = '#000000';
+            $data_arr[$i]['color'] = '#ffffff';
         }
         $i++;
         
     }
     if($role == 1){
         $data_arr[]=['plan_type'=>$plan_type, 'deadline_date'=>$plan_deadline];
+        $data_arr[$i]['color'] = '#ffffff';
     }
 
     $data = array(
