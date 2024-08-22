@@ -38,6 +38,7 @@ if(isset($_SESSION['user_id']))
 
     
     <title>Organizo</title>
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
 </head>
 <body>
 

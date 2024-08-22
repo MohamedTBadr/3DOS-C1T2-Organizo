@@ -2,6 +2,13 @@
 // SARAH
 // include("connection.php");
 include("nav.php");
+
+if(!isset($_SESSION['user_id']))
+{
+    header ("Location: index.php");
+}
+
+
 // Initialize $RunOne
 $RunOne = [];
 
@@ -103,8 +110,7 @@ if(isset($_POST['search'])){
                             <div class="profile">
                                 <div class="asign">
                                     <p text-muted>Sprint</p>
-                                    <h
-                                    5><?php echo $key['sprint_name']; ?></h5>
+                                    <h5><?php echo $key['sprint_name']; ?></h5>
                                 </div>
                                 <div class="ms-auto">
                                     <img src="img/about-left-image.png">
@@ -160,8 +166,7 @@ if(isset($_POST['search'])){
                             <div class="profile">
                                 <div class="asign">
                                     <p text-muted>Sprint</p>
-                                    <h
-                                    5><?php echo $key['sprint_name']; ?></h5>
+                                    <h5><?php echo $key['sprint_name']; ?></h5>
                                 </div>
                                 <div class="ms-auto">
                                     <img src="img/about-left-image.png">

@@ -49,6 +49,7 @@ if (isset($_SESSION['user_id'])) {
     <meta name="author" content="">
 
     <title>organizo</title>
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
 
 
 
@@ -98,14 +99,16 @@ if (isset($_SESSION['user_id'])) {
                 </a>
                 <?php if(!isset($_SESSION['user_id'])){ ?>
                 <div class="d-lg-none ms-auto me-3">
-                    <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="./login.php"
-                        role="button" aria-controls="offcanvasExample"> Login</a>
+                    <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="./login.php?LC=1"
+                        role="button" aria-controls="offcanvasExample">Login <a href="login.php?LC=1">Login</a></a>
                 </div>
                 <?php } ?>
+                <?php if(isset($_SESSION['user_id'])) {?>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <?php } ?>
 
             <?php if(isset($_SESSION['user_id'])){ ?>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -763,7 +766,11 @@ if (isset($_SESSION['user_id'])) {
 
     <!-- Get Pro Button -->
     <ul class="pro-features">
+        <?php if(isset($_SESSION['user_id'])) {?>
         <a class="get-pro" href="./subscription.php">GET PRO</a>
+        <?php } else { ?>
+        <a class="get-pro" href="./login.php">GET PRO</a>
+        <?php } ?>
         <li class="big-title">Bronze</li>
         <li class="big-title">Silver</li>
         <li class="title">Gold</li>

@@ -72,7 +72,10 @@ if(isset($_SESSION['user_id']) && isset($_GET['sid']) && isset($_GET['ts']))
 
     }
 }
-
+else
+{
+    header("Location: index.php");
+}
 ?>
 
 <html lang="en">
@@ -82,8 +85,9 @@ if(isset($_SESSION['user_id']) && isset($_GET['sid']) && isset($_GET['ts']))
     <meta http-equiv="X-UA-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
     <title>
-        New Password Page
+        Add Task
     </title>
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
     <link rel="stylesheet" type="text/css" href="css/add-task.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
