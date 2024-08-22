@@ -136,7 +136,7 @@ if ( $task_id > 0 && $user_id > 0) {
     </div>
     <div class="col-sm-6 ">
       <div class="center">
-        <img src="img/profile/<?php echo $fetch_image_assignie['image']; ?>>" class="pp" alt=>
+        <img src="img/profile/<?php echo $fetch_image_assignie['image']; ?>" class="pp" alt=>
         <h6 class="ms-2">
           Assignee:
           <?php echo $task['assignie_first_name'] . " " . $task['assignie_last_name']; ?>
