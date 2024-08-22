@@ -30,6 +30,7 @@ if ($task_id > 0 && $user_id > 0) {
         mysqli_query($connect, $update);
         
     }
+
     if (isset($_GET['deletee'])) {
       $id = $_GET['deletee'];
       $delete = "DELETE FROM `comment` WHERE `comment_id` = '$id'";
@@ -70,7 +71,7 @@ if ($task_id > 0 && $user_id > 0) {
   <!-- start card -->
 
   <div class="card mt-5">
-  <a href="tasks.php" class="close"><i class="fa-solid fa-x "></i></a>
+  <a href="tasks.php?sid=<?php echo $task['sprint_id'];?>" class="close"><i class="fa-solid fa-x "></i></a>
 
     <div class="w-100">
       <div class="txt">
