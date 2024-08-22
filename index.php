@@ -622,11 +622,11 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expand="true"
                                             aria-controls="collapse1" data-accordion-button="data-accordion-button">How
-                                            do i create a new project?</button></h2>
+                                            can I create a new project?</button></h2>
                                     <div class="accordion-collapse collapse show" id="collapse1"
                                         data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">Click the "Create Project" button,
-                                            give it a name, and add your team members</div>
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">Click the "+ Add Project" button,
+                                            give it a name, and add your team members by clicking "Edit" then "Add Member"</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -637,8 +637,7 @@ if (isset($_SESSION['user_id'])) {
                                             data-accordion-button="data-accordion-button">How can I assign tasks to team
                                             members?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">Create a task , select the "Add
-                                            member" option and choose the person responsible
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">Create a task by clicking "Add Task", and choose an assignee out of the team members of said project.
                                         </div>
                                     </div>
                                 </div>
@@ -651,7 +650,7 @@ if (isset($_SESSION['user_id'])) {
                                             see what's been completed?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse3" data-bs-parent="#accordion">
                                         <div class="accordion-body lh-xl pt-0 pb-x1">On the sprint page view the
-                                            progress of each task, with completed tasks marked as done</div>
+                                            progress of each task, with completed tasks marked as done, you can also check you calendar which packs everything at one place!</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
