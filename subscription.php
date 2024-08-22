@@ -29,6 +29,8 @@ $run_plan=mysqli_query($connect,$select_plan);
 //     $run_edit= mysqli_query($connect,$edit);
 //     header("Location:subscription.php");
 // }
+$allPlans = "SELECT * FROM `plan`";
+$resAllPlans = mysqli_query($connect, $allPlans);
 
 ?>
 
@@ -45,7 +47,13 @@ $run_plan=mysqli_query($connect,$select_plan);
 <body>
     <div class="header">
         <h1>Pricing plans</h1>
-        <h4>Explore which option is right for you</h4>
+        <?php if($plan_id == 1) {?>
+        <h4>Discover the best plan for your needs</h4>
+        <?php } else if($plan_id == 2) {?>
+        <h4>You may consider upgrading to the Business Plan</h4>
+        <?php } else if($plan_id == 3) {?>
+        <h4>You're currently enjoying the highest tier!</h4>
+        <?php } ?>
     </div>
     <div class="pricing-container">
         <?php foreach($run_plan as $plan){ ?>
@@ -55,7 +63,7 @@ $run_plan=mysqli_query($connect,$select_plan);
             <p class="price">$<?php echo $plan['price']?>/month</p>
             <p class="description">Included in <?php echo $plan['plan_type']?>:</p>
             <ul class="list">
-                <li>only up to <?php echo $plan['limit']?> member</li>
+                <li>only up to <?php echo $plan['limit']?> members</li>
                 <br>
                 <!-- <input type="hidden" name="plan_id"> -->
             </ul>
@@ -108,15 +116,13 @@ $run_plan=mysqli_query($connect,$select_plan);
         <h1>Compare Our Plans</h1>
         <h4>Explore which option is right for you</h4>
     </div>
-    
     <table class="pricing-table">
         <thead>
             <tr>
                 <th>Feature</th>
-                <th>Free</th>
-                <th>Bronze</th>
-                <th>Silver</th>
-                <th>Gold</th>
+                <?php foreach ($resAllPlans as $plan) {?>
+                <th><?php echo $plan['plan_type']; ?></th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -125,15 +131,26 @@ $run_plan=mysqli_query($connect,$select_plan);
                 <td class="false">✘</td>
                 <td class="true">✔</td>
                 <td class="true">✔</td>
-                <td class="true">✔</td>
             </tr>
             <tr>
                 <td>Sub Tasks</td>
                 <td class="true">✔</td>
                 <td class="true">✔</td>
                 <td class="true">✔</td>
-                <td class="true">✔</td>
             </tr>
+            <tr>
+                <td>Member limit</td>
+                <?php foreach ($resAllPlans as $plan) {?>
+                <td><?php echo $plan['limit']; ?></td>
+                <?php } ?>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <?php foreach ($resAllPlans as $plan) {?>
+                    <td><?php echo (!empty($plan['price'])) ? "$".$plan['price']."/month" : "Free"; ?></td>
+                <?php } ?>
+            </tr>
+
         </tbody>
     </table>
     </div>
