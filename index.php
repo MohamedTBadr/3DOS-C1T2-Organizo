@@ -94,7 +94,7 @@ if (isset($_SESSION['user_id'])) {
 			        <!-- <i class='bx bxl-slack'></i> -->
 
                     <span class="navbar-brand-text">
-                        organizo
+                        Organizo
                         <!-- <small></small> -->
                     </span>
                 </a>
@@ -123,11 +123,11 @@ if (isset($_SESSION['user_id'])) {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="./projects.php">projects</a>
+                            <a class="nav-link click-scroll" href="./projects.php">Projects</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="./subscription.php">subscribe</a>
+                            <a class="nav-link click-scroll" href="./subscription.php">Subscribe</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -230,7 +230,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div>
                                 <h5 class="fs-8 fw-bold lh-lg mb-1"> Unlimited Projects </h5>
-                                <p class="lh-xl mb-0">Conduct unlimited Project with us for better business operations.
+                                <p class="lh-xl mb-0">Conduct unlimited Projects with us for better business operations.
                                 </p>
                             </div>
                         </div>
@@ -268,15 +268,15 @@ if (isset($_SESSION['user_id'])) {
                             <div class="row justify-content-center justify-content-lg-start ">
                                 <div class="col-sm-10 col-md-8 col-lg-11">
                                     <h2 class="fs-4 fs-lg-3 fw-bold mb-2 text-center text-white  text-lg-start"> Organize remote
-                                        team fast & easily.</h2>
+                                        teams fast & with ease.</h2>
                                     <p class="fs-8 mb-4 mb-lg-5 lh-lg text-center text-white  text-lg-start fw-normal">Organizing
                                         and managing your remote
                                         teams has never been this easy!</p>
                                 </div>
                                 <div class="col-sm-10 col-md-8 col-lg-12">
                                     <div class="mb-x1 mb-lg-3">
-                                        <h5 class="fs-8 fw-bold text-white lh-lg mb-1">Create Unlimited Teams </h5>
-                                        <p class="b-0 lh-xl text-white">Create unlimited teams and boost productivity with
+                                        <h5 class="fs-8 fw-bold text-white lh-lg mb-1">Create Unlimited Tasks</h5>
+                                        <p class="b-0 lh-xl text-white">Create unlimited Tasks and boost productivity with
                                             efficient collaboration.</p>
                                     </div>
                                     <div>
@@ -438,9 +438,7 @@ if (isset($_SESSION['user_id'])) {
                                     src="img/share-svgrepo-com (1).svg" alt=""> -->
                                 <div>
                                     <h5 class="fs-8 text-white lh-lg fw-bold">File Sharing</h5>
-                                    <p class="text-white text-opacity-50 lh-xl mb-0">Easily share files where necessary
-                                        and keep them safe
-                                        with enhanced security and protection.</p>
+                                    <p class="text-white text-opacity-50 lh-xl mb-0">Easily share files where necessary.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 d-flex align-items-start gap-2">
@@ -448,7 +446,7 @@ if (isset($_SESSION['user_id'])) {
                                     src="img/chart-column-grow-svgrepo-com.svg" alt="" > -->
                                 <div>
                                     <h5 class="fs-8 text-white lh-lg fw-bold">Increase Profit</h5>
-                                    <p class="text-white text-opacity-50 lh-xl mb-0">increase your profit of your
+                                    <p class="text-white text-opacity-50 lh-xl mb-0">Increase your profit of your
                                         projects and your company</p>
                                 </div>
                             </div>
@@ -465,12 +463,6 @@ if (isset($_SESSION['user_id'])) {
                             <div class="col-12 col-md-6 col-lg-4 d-flex align-items-start gap-2">
                                 <!-- <img class="imgwhy"
                                     src="img/payment-request-api-svgrepo-com.svg" alt="" > -->
-                                <div>
-                                    <h5 class="fs-8 text-white lh-lg fw-bold">Payment System</h5>
-                                    <p class="text-white text-opacity-50 lh-xl mb-0">With its easy payment system create
-                                        invoices and get
-                                        paid all at the same place.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -642,7 +634,7 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse2"
                                             aria-expand="false" aria-controls="collapse2"
-                                            data-accordion-button="data-accordion-button">How can i assign tasks to team
+                                            data-accordion-button="data-accordion-button">How can I assign tasks to team
                                             members?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordion">
                                         <div class="accordion-body lh-xl pt-0 pb-x1">Create a task , select the "Add
@@ -655,11 +647,11 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse3"
                                             aria-expand="false" aria-controls="collapse3"
-                                            data-accordion-button="data-accordion-button">How do i track progress and
-                                            see whats been completed?</button></h2>
+                                            data-accordion-button="data-accordion-button">How do I track progress and
+                                            see what's been completed?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse3" data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">in the project page show the
-                                            progress of each task , with completed tasks marked as finished</div>
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">On the sprint page view the
+                                            progress of each task, with completed tasks marked as done</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -667,10 +659,10 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse4"
                                             aria-expand="false" aria-controls="collapse4"
-                                            data-accordion-button="data-accordion-button">Can i communicate with my team
+                                            data-accordion-button="data-accordion-button">Can I communicate with my team
                                             within the project ?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse4" data-bs-parent="#accordion">
-                                        <div class="accordion-body lh-xl pt-0 pb-x1">yes, you can leave comments on
+                                        <div class="accordion-body lh-xl pt-0 pb-x1">Yes, you can leave comments on
                                             tasks </div>
                                     </div>
                                 </div>
@@ -679,7 +671,7 @@ if (isset($_SESSION['user_id'])) {
                                             class="accordion-button fs-4 lh-lg fw-bold pt-x1 pb-2 collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse5"
                                             aria-expand="false" aria-controls="collapse5"
-                                            data-accordion-button="data-accordion-button">How can I get  to your
+                                            data-accordion-button="data-accordion-button">How can I reach your
                                             support?</button></h2>
                                     <div class="accordion-collapse collapse" id="collapse5" data-bs-parent="#accordion">
                                         <div class="accordion-body lh-xl pt-0 pb-x1">To reach our support team, simply
