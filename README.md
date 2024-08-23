@@ -35,7 +35,7 @@ We chose to include the logout here instead of having it easily reachable from t
 ```
 ## Edit user profile
 ```
-It allows the user to change first name, last name, phone number, and edit the profile picture,
+Allows the user to change first name, last name, phone number, and edit the profile picture,
 as all users start with a default picture
 ```
 ## Change password
@@ -47,8 +47,9 @@ Changing the password successfully will log the user out as a security measure
 ```
 ## Subscription plans
 ```
-It dynamically shows the plans available for upgrade based on the user’s current plan
-It has a section that shows a neat comparison of the plans that shows up regardless of the current plan
+It dynamically shows the plans available for upgrade based on the user’s plan
+It has a section that shows a neat comparison of the plans that shows up
+regardless of the current plan
 ```
 ## Payment
 ```
@@ -56,10 +57,11 @@ It ensures that no input is empty or invalid
 ```
 ## My projects
 ```
-Shows the user's projects, in addition to providing filters (All, In Progress, Completed) and a search
+Shows the user's projects
+Provides filters (All, In Progress, Completed) and a search bar
 A project without sprints will have a due date marked as TBD (to be decided)
 An "In progress" project is a project that has sprints, and tasks
-A "Completed" project is a project that has all of its tasks across of all its sprints checked as "Done"
+A "Completed" has all of its tasks across of all its sprints checked as "Done"
 ```
 ## Add project
 ```
@@ -78,14 +80,15 @@ Delete member: removes other team members (other than the user)
 It shows a given project's sprints
 It has pagination, where the limit is 3 sprints / page
 Add sprint popup: set the sprint name, start and end date
-                  the start date is set to current day's date for the user convenience but it can be changed
+                  the start date is set to current day's date
+                  for the user convenience but it can be changed
 
 Delete sprint: allows the user to delete the sprint
 ```
 ## Edit sprint
 ```
-Allows the user to edit the sprint name, start and end dates but within constraints that
-relate to when is that change being done
+Allows the user to edit the sprint name, start and end dates but within
+constraints that relate to when is that change being done
 ```
 
 ## Tasks
@@ -102,25 +105,29 @@ Delete task: deletes the task
 ## Archive task
 ```
 This handy button allows the task reporter (creator) to archive the task
-After task archival, archived tasks will be found at "Archived tasks" easily accessible through the sidenav
+After task archival, archived tasks will be found at "Archived tasks"
+which is easily accessible through the side navbar
 ```
 ## Task details
 ```
 Shows handful information such as who assigned the task, its status, its priority
 And whether if the assignee has seen the task or not (eye icon)
-Edit task: The task name, start date, status, and end date can be adjusted, the user can quit this form through the 'X'
+Edit task: The task name, start date, status, and end date can be adjusted,
+           the user can quit this form through the 'X'
+
 The comments: who wrote the comment can delete it
 Image downalod: Team members can download the attached pictures
 The user can go back to viewing the tasks of the given sprint by clicking on the 'X'
 ```
 ## Archived tasks Page "to unarchive"
 ```
-As discussed before, it shows the archived tasks and that's where the user can unhide them
+Tt shows the archived tasks and that's where the user can unhide them
 ```
 ## Personal board (my_tasks)
 ```
 Only shows the tasks that pertain to the user
-Add note: These are notes to oneself, only visible to the user unlike comments which are seen by the team
+Add note: These are notes to oneself, only visible to the user
+          unlike comments which are seen by the team
 ```
 ## My task details
 ```
@@ -129,6 +136,10 @@ Delete note: allows the user to delete a note
 ```
 ## Calendar
 ```
-Dynamically shows all tasks start and end dates and provides information when the task label is pressed
+Dynamically shows all tasks start &end dates and provides information
+when the task label is pressed
 It shows the expiry date of the subscription plan as well
 ```
+</br>
+</br>
+![Our team-ish](./img/wellItired.jpg)
