@@ -142,4 +142,4 @@ It shows the expiry date of the subscription plan as well
 ```
 </br>
 </br>
-![Our team-ish](/img/wellItired.jpg)
+![Our team-ish](https://github.com/ShehabSerry/3DOS-C1T2-Organizo/blob/main/img/wellItired.jpg)
