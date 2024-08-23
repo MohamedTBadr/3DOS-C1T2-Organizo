@@ -100,7 +100,11 @@ View task details: opens a detailed page, discussed down below
 Archive task: discussed below
 Delete task: deletes the task
 ```
-## Add task </br>
+
+## Add Task 
+```
+form for adding a new task within a sprint and includes these inputs task name, category (New, Bug, improve), Priority (High, Medium, Low), Description, Start and End date, and input to assign the task to any team member and archive or unarchive option.
+```
 
 ## Archive task
 ```
