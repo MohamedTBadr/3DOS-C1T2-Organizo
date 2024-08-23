@@ -1,5 +1,7 @@
 # ThreeDOS - INSTANT - Case 1 Team 2 - ORGANIZO </br>
 
+<img src="/img/keklogo.png" alt="Your logo or image" width="100" height="100" style="margin-right: 16px; display: inline;" />
+
 **dbName** is conference
 
 ## Landing Page
