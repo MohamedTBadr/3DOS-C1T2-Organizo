@@ -97,8 +97,9 @@ if(isset($_POST['search'])){
 <body>
     <div class="haha">
     <?php if(isset($_POST['search'])){?>
-            <div class="card2">
+            <!-- <div class="card2"> -->
             <?php foreach ($run_select_search as $data){ ?>
+                <div class="card2">
                 <a href="task_details.php?task_id=<?php echo $data['task_id']?>"><?php echo $data['task_name'], "<br>";?>
             </a>
             </div>
@@ -328,5 +329,55 @@ if(isset($_POST['search'])){
     <script src="js/card.js"></script>
     <!-- bootstrap js link -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $("#searchText").on("input", function() {
+        var searchText = $(this).val();
+        
+        // Prevent search if empty
+        if (searchText === "") {
+            location.reload();  // Reload the page if search is cleared
+            return;
+        }
+        
+        // Perform AJAX request to search
+        $.ajax({
+            url: " tasks.php?sid=<?php echo $sprint_id ?>", // Same page
+            type: "POST",
+            data: {
+                text: searchText, // Send the search text
+                search: true // Flag to detect the search query
+            },
+            success: function(data) {
+                var results = $(data).find('.card2'); // Extract the updated search results
+                $('.haha').html(results); // Update the UI with new search results
+            }
+        });
+    });
+});
+$('form').on('submit', function(e) {
+    e.preventDefault();  // Prevent the form from submitting in the default way
+    var searchText = $('#searchText').val();
+
+    if (searchText === "") {
+        location.reload();  // Reload page if search is cleared
+        return;
+    }
+
+    $.ajax({
+  
+        url: " tasks.php?sid=<?php echo $sprint_id ?>", // Same page
+        type: "POST",
+        data: { text: searchText, search: true },
+        success: function(data) {
+            var results = $(data).find('.card2');
+            $('.haha').html(results);
+        }
+    });
+});
+
+</script>
 </body>
 </html>

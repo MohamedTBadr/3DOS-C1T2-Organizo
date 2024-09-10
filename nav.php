@@ -45,7 +45,7 @@ if(isset($_SESSION['user_id']))
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand">
+		<a href="index.php" class="brand">
 			<i class='bx bxl-slack'></i>
 			<span class="text">Organizo</span>
 		</a>
@@ -106,7 +106,7 @@ if(isset($_SESSION['user_id']))
                 </a>
               </p>
 <div class="collapse" id="collapseExample">
-  <div class="card card-body" style="border:none;  width: 93%;
+  <div class="cardd card-body" style="border:none;  width: 93%;
     position: absolute;
     left: 0px;
     top: 105%; background-color:transparent;" >
@@ -209,7 +209,7 @@ if(isset($_SESSION['user_id']))
             if(in_array($currpage, $SRCHPages)) { ?>
 			<form method="POST">
 				<div class="form-input">
-					<input type="search" placeholder="Search..." name="text" value="<?php echo isset($_POST['text']) ? $_POST['text'] : ''?>">
+					<input type="search" id="searchText" placeholder="Search..." name="text" value="<?php echo isset($_POST['text']) ? $_POST['text'] : ''?>">
 					<button type="submit" class="search-btn" name="search"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>

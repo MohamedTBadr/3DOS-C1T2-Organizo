@@ -98,8 +98,20 @@ if (isset($_SESSION['user_id'])) {
 else if(!isset($_SESSION['user_id']))
     header ("Location: index.php");
 
-if (isset($_POST['search'])) {
-    $text = $_POST['text'];
+// if (isset($_POST['search'])) {
+//     $text = $_POST['text'];
+//     $searchStmt = "
+//         SELECT `project`.`project_id`, `project`.`project_name`, GROUP_CONCAT(`user`.`first_name` SEPARATOR ', ') AS team_members
+//         FROM `project`
+//         INNER JOIN `project_member` ON `project`.`project_id` = `project_member`.`project_id`
+//         INNER JOIN `user` ON `project_member`.`user_id` = `user`.`user_id`
+//         WHERE `project_member`.`user_id` = $logged_user_id AND `project`.`project_name` LIKE '%$text%'
+//         GROUP BY `project`.`project_id`, `project`.`project_name`
+//     ";
+//     $run_search1 = mysqli_query($connect, $searchStmt);
+// }
+if (isset($_POST['search']) || isset($_POST['text'])) {
+    $text = mysqli_real_escape_string($connect, $_POST['text']);
     $searchStmt = "
         SELECT `project`.`project_id`, `project`.`project_name`, GROUP_CONCAT(`user`.`first_name` SEPARATOR ', ') AS team_members
         FROM `project`
@@ -110,6 +122,8 @@ if (isset($_POST['search'])) {
     ";
     $run_search1 = mysqli_query($connect, $searchStmt);
 }
+
+
 
 
 
@@ -127,6 +141,12 @@ if (isset($_POST['search'])) {
 <body>
 <div class="header">
     <h1>My Projects</h1>
+   
+
+    <div class="form-input">
+
+                </div>
+    <!-- <input type="text" id="searchText" placeholder="Search projects..." class="form-control" style="width: 250px; margin-bottom: 20px;"> -->
     <button class='btnn' ><a href='add-project.php' style="text-decoration: none;"><i class="fa-solid fa-plus"></i>Add Project </a> </button>
     <div class="anchors">
         <a href="projects.php?filter=all"><button type="submit" class="btn btn-outline-primary" <?php if ($filter == 'all') echo "style='    background-color:#033043ad;
@@ -158,7 +178,7 @@ if (isset($_POST['search'])) {
     <div class="pricing-container">
         <?php if (!empty($allProjects)) {foreach ($projects as $project) {?>
         <div class="pricing-card">
-            <h2 class="card-title"><?php echo $project['project_name']; ?></h2>
+        <a href="ViewSprints.php?pid=<?php echo $project['project_id'] ?>"> <h2 class="card-title"><?php echo $project['project_name']; ?></h2> </a>
             <p class="price"></p>
             <p class="description"><i class="fa-solid fa-clock"></i> Due date: <?php echo $project['project_deadline']; ?></p>
             <div class="team">
@@ -207,4 +227,54 @@ if (isset($_POST['search'])) {
 <?php } ?>
 <!--<button class='btn' style="transform: translate3D(279%,-342%,0);"><a href='add-project.php' style='text-decoration: none'</a>Add Project</button>-->
 </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $("#searchText").on("input", function() {
+        var searchText = $(this).val();
+        
+        // Prevent search if empty
+        if (searchText === "") {
+            location.reload();  // Reload the page if search is cleared
+            return;
+        }
+        
+        // Perform AJAX request to search
+        $.ajax({
+            url: "projects.php", // The same URL for the search
+            type: "POST",
+            data: {
+                text: searchText, // Send the search text
+                search: true // Flag to detect the search query
+            },
+            success: function(data) {
+                var results = $(data).find('.pricing-card'); // Extract the updated search results
+                $('.pricing-container').html(results); // Update the UI with new search results
+            }
+        });
+    });
+});
+$('form').on('submit', function(e) {
+    e.preventDefault();  // Prevent the form from submitting in the default way
+    var searchText = $('#searchText').val();
+
+    if (searchText === "") {
+        location.reload();  // Reload page if search is cleared
+        return;
+    }
+
+    $.ajax({
+        url: "projects.php", // Same page
+        type: "POST",
+        data: { text: searchText, search: true },
+        success: function(data) {
+            var results = $(data).find('.pricing-card');
+            $('.pricing-container').html(results);
+        }
+    });
+});
+
+</script>
 </html>

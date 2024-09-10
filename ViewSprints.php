@@ -18,21 +18,21 @@ else
     else
         $page=$_GET['page'];
 
-    $num="SELECT * FROM `sprint` WHERE `project_id` = $pid";
+    $num="SELECT * FROM sprint WHERE project_id = $pid";
     $run_num=mysqli_query($connect, $num);
     $num_rows=mysqli_num_rows($run_num);
 
     $total_pages=ceil($num_rows / $limit);
     $offset = ($page - 1) * $limit;
-    // $select="SELECT * FROM`sprint` limit $limit offset $offset";
+    // $select="SELECT * FROMsprint limit $limit offset $offset";
     // $run_select=mysqli_query($connect,$select);
 
-    $memberStmt = "SELECT * FROM `project_member` WHERE `user_id` = $user_id AND `project_id` = $pid";
+    $memberStmt = "SELECT * FROM project_member WHERE user_id = $user_id AND project_id = $pid";
     $ExecMember = mysqli_query($connect, $memberStmt);
     if (mysqli_num_rows($ExecMember) == 0)
         header("Location: index.php"); // not a member = kick
 
-    $sprintsStmt = "SELECT * FROM `sprint` WHERE `project_id` = $pid ORDER BY `end_date` limit $limit offset $offset";
+    $sprintsStmt = "SELECT * FROM sprint WHERE project_id = $pid ORDER BY end_date limit $limit offset $offset";
     $ExecSprint = mysqli_query($connect, $sprintsStmt);
     if (mysqli_num_rows($ExecSprint) == 0)
         $error = "There are no sprints for this Project yet";
@@ -65,7 +65,7 @@ else
         }
         else
         {
-            $AddSprStmt = "INSERT INTO `sprint` (`sprint_name`, `start_date`, `end_date`, `project_id`) VALUES ('$sprint_name', '$start_date', '$end_date', '$pid')";
+            $AddSprStmt = "INSERT INTO sprint (sprint_name, start_date, end_date, project_id) VALUES ('$sprint_name', '$start_date', '$end_date', '$pid')";
             $ExecAddSpr = mysqli_query($connect, $AddSprStmt);
             if ($ExecAddSpr) {
                 $done = "Sprint Successfully Added";
@@ -80,7 +80,7 @@ else
     if (isset($_GET['ds'])) // del logic
     {
         $sprint_id = $_GET['ds'];
-        $DeleteSprStmt = "DELETE FROM `sprint` WHERE `sprint_id` = $sprint_id";
+        $DeleteSprStmt = "DELETE FROM sprint WHERE sprint_id = $sprint_id";
         $ExecDeleteSpr = mysqli_query($connect, $DeleteSprStmt);
         if ($ExecDeleteSpr)
         {
@@ -92,7 +92,7 @@ else
     if (isset($_GET['es'])) //edit logic
     {
         $sprint_id = $_GET['es'];
-        $EditSprStmt = "SELECT * FROM `sprint` WHERE `sprint_id` = $sprint_id";
+        $EditSprStmt = "SELECT * FROM sprint WHERE sprint_id = $sprint_id";
         $ExecEditSpr = mysqli_query($connect, $EditSprStmt);
         $sprintData = mysqli_fetch_assoc($ExecEditSpr);
         if (isset($_POST['update-spr']))
@@ -101,7 +101,7 @@ else
             $start_date = $_POST['start_date'];
             $end_date = $_POST['end_date'];
 
-            $UpdateSprStmt = "UPDATE `sprint` SET `sprint_name` = '$sprint_name', `start_date` = '$start_date', `end_date` = '$end_date' WHERE `sprint_id` = $sprint_id";
+            $UpdateSprStmt = "UPDATE sprint SET sprint_name = '$sprint_name', start_date = '$start_date', end_date = '$end_date' WHERE sprint_id = $sprint_id";
             $ExecUpdateSpr = mysqli_query($connect, $UpdateSprStmt);
             if ($ExecUpdateSpr)
             {
@@ -113,15 +113,16 @@ else
 }
 $select="SELECT * FROM sprint ";
 $run_select=mysqli_query($connect,$select);
-if(isset($_POST['search'])){
-    $text=$_POST['text'];
-    $select_search="SELECT * FROM sprint WHERE (sprint_name LIKE '%$text%') AND `project_id` = $pid";
+if (isset($_POST['search']) || isset($_POST['text'])) {
+    $text = mysqli_real_escape_string($connect, $_POST['text']);
+
+    $select_search="SELECT * FROM sprint WHERE (sprint_name LIKE '%$text%') AND project_id = $pid";
     $run_select_search=mysqli_query($connect,$select_search);
     $num_rows = mysqli_num_rows($run_select_search);
     $total_search_pages = ceil($num_rows / $limit);
     $offset = ($page - 1) * $limit;
 
-    $select_search = "SELECT * FROM sprint WHERE (sprint_name LIKE '%$text%') AND `project_id` = $pid LIMIT $limit OFFSET $offset";
+    $select_search = "SELECT * FROM sprint WHERE (sprint_name LIKE '%$text%') AND project_id = $pid LIMIT $limit OFFSET $offset";
     $run_select_search = mysqli_query($connect, $select_search);
 }
 ?>
@@ -203,8 +204,9 @@ if(isset($_POST['search'])){
     <!-- start first card  -->
         <?php while ($data = mysqli_fetch_assoc($ExecSprint)) { ?>
             <div class="pricing-card">
-                <div class="d-flex mb-3">
-                    <h2 class="card-title"><?php echo $data['sprint_name'] ?></h2>
+            <a href="tasks.php?sid=<?php echo $data['sprint_id'] ?>">
+                    <div class="d-flex mb-3">
+                        <h2 class="card-title" style="color: #212529 !important;"><?php echo $data['sprint_name'] ?></h2>
                     <div class="ms-4">
                         <button type="button" class="icon"><a href="editsprints.php?sid=<?php echo $data['sprint_id'] ?>"><i class="fa-regular fa-pen-to-square"></i></a></button>
                         <form method="GET" style="display: inline">
@@ -353,7 +355,57 @@ if(isset($_POST['search'])){
         </div>
     <?php } ?>
     <script src="js/sprints.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $("#searchText").on("input", function() {
+        var searchText = $(this).val();
+        
+        // Prevent search if empty
+        if (searchText === "") {
+            location.reload();  // Reload the page if search is cleared
+            return;
+        }
+        
+        // Perform AJAX request to search
+        $.ajax({
+            url: "ViewSprints.php?pid=<?php echo $pid ?>", // The same URL for the search
+            type: "POST",
+            data: {
+                text: searchText, // Send the search text
+                search: true // Flag to detect the search query
+            },
+            success: function(data) {
+                var results = $(data).find('.pricing-card'); // Extract the updated search results
+                $('.pricing-container').html(results); // Update the UI with new search results
+            }
+        });
+    });
+});
+$('form').on('submit', function(e) {
+    e.preventDefault();  // Prevent the form from submitting in the default way
+    var searchText = $('#searchText').val();
+
+    if (searchText === "") {
+        location.reload();  // Reload page if search is cleared
+        return;
+    }
+
+    $.ajax({
+        url: "ViewSprints.php?pid=<?php echo $pid ?>", // Same page
+        type: "POST",
+        data: { text: searchText, search: true },
+        success: function(data) {
+            var results = $(data).find('.pricing-card');
+            $('.pricing-container').html(results);
+        }
+    });
+});
+
+</script>
 </body>
 </html>
 
-<!-- $select_search="SELECT * FROM sprint WHERE `project_id` = $pid &&  (sprint_name LIKE '%$text%')";-->
+<!-- $select_search="SELECT * FROM sprint WHERE project_id = $pid &&  (sprint_name LIKE '%$text%')";-->

@@ -32,8 +32,8 @@ $RunOne = [];
     $RunOne = mysqli_query($connect, $select);
    
 
-if(isset($_POST['search'])){
-    $text=$_POST['text'];
+    if (isset($_POST['search']) || isset($_POST['text'])) {
+        $text = mysqli_real_escape_string($connect, $_POST['text']);
     $select_search="SELECT u1.`first_name` AS assign_by_first_name, u1.`last_name` AS assign_by_last_name, 
                       u2.`first_name` AS assignie_first_name, u2.`last_name` AS assignie_last_name, 
                       `task_name`, `task_status`, `task`.`start_date`, `task`.`end_date`, `description`, `hidden`,
@@ -189,5 +189,54 @@ if(isset($_POST['search'])){
     <script src="js/card.js"></script>
     <!-- bootstrap js link -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $("#searchText").on("input", function() {
+        var searchText = $(this).val();
+        
+        // Prevent search if empty
+        if (searchText === "") {
+            location.reload();  // Reload the page if search is cleared
+            return;
+        }
+        
+        // Perform AJAX request to search
+        $.ajax({
+            url: "archive_taskss.php", // The same URL for the search
+            type: "POST",
+            data: {
+                text: searchText, // Send the search text
+                search: true // Flag to detect the search query
+            },
+            success: function(data) {
+                var results = $(data).find('.card'); // Extract the updated search results
+                $('.haha').html(results); // Update the UI with new search results
+            }
+        });
+    });
+});
+$('form').on('submit', function(e) {
+    e.preventDefault();  // Prevent the form from submitting in the default way
+    var searchText = $('#searchText').val();
+
+    if (searchText === "") {
+        location.reload();  // Reload page if search is cleared
+        return;
+    }
+
+    $.ajax({
+        url: "archive_taskss.php", // Same page
+        type: "POST",
+        data: { text: searchText, search: true },
+        success: function(data) {
+            var results = $(data).find('.card');
+            $('.haha').html(results);
+        }
+    });
+});
+
+</script>
 </body>
 </html>
