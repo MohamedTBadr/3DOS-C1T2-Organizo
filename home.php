@@ -1,12 +1,9 @@
 <?php
-	# database connection file
-	include 'connection.php';
+# database connection file
+include 'connection.php';
 
-
-  if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id'])) {
   	
-
-
   	include 'app/helpers/user.php';
   	include 'app/helpers/conversations.php';
     include 'app/helpers/timeAgo.php';
@@ -28,7 +25,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link rel="stylesheet" 
 	      href="./css/chat.css">
-	<link rel="icon" href="img/logo.png">
+	<link rel="icon" href="img/keklogo.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="d-flex
@@ -157,6 +154,6 @@
 </html>
 <?php
   }else{
-  	echo "alaa";
+  	header("location:login.php");
   }
  ?>
