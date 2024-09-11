@@ -27,7 +27,7 @@ if (isset($_SESSION['user_id'])) {
                     <a href="chat.php?user=<?= $user['user_id'] ?>"
                        class="d-flex justify-content-between align-items-center p-2">
                         <div class="d-flex align-items-center">
-                            <img src="img/<?= $user['image'] ?>"
+                            <img src="img/profile/<?= $user['image'] ?>"
                                  class="w-10 rounded-circle">
                             <h3 class="fs-xs m-2">
                                 <?= $user['first_name'] ." ".$user['last_name']?>
