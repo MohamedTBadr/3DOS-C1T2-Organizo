@@ -120,5 +120,5 @@ width: 100%; */
 }
 .file{
 	display: none;
-    visibility: none;
+    visibility: hidden;
 }
