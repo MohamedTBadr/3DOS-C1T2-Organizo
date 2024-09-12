@@ -118,6 +118,7 @@ include 'connection.php';
 					<p class="ltext border 
 					         rounded p-2 mb-1">
 					    <?=$chat['message']?> 
+					    <a href="./img/chat file/<?= htmlspecialchars($chat['file']) ?>" target="_blank"><?= htmlspecialchars($chat['file']) ?></a>
 					    <small class="d-block">
 					    	<?=$chat['created_at']?>
 					    </small>
