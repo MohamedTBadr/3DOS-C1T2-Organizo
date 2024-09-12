@@ -339,7 +339,7 @@ button:hover {
   bottom: -3px;
   right: -1px;
   z-index: -1;
-  border-radius: 14px;
+  border-radius: 10px;
 }
 
 .c-button--gooey .c-button__blobs div {
@@ -369,6 +369,8 @@ button:hover {
 .c-button--gooey:hover {
   color: #fff;
   border: none;
+  background-color: #fda521;
+  border: 2px solid #033043;
 }
 
 .c-button--gooey:hover .c-button__blobs div {
