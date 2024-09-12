@@ -4,13 +4,10 @@ include("nav.php");
 $error="";
 
 if(!isset($_SESSION['user_id']))
-{
     header("Location: index.php");
-}
 
-if(isset($_GET['plan'])){
+if(isset($_GET['plan']))
     $new_planid=$_GET['plan'];
-}
 
 if(isset($_POST['pay'])){
     $card_number = $_POST['card_number'];
@@ -36,6 +33,10 @@ if(isset($_POST['pay'])){
                 SET `user`.`role_id` = 1
                 WHERE `user`.`user_id` = '$user_id'";
         $run_update = mysqli_query($connect, $update);
+        $start = date('Y-m-d');
+        $end = date('Y-m-d', strtotime('+1 month'));
+        $insert = "INSERT INTO `subscription` VALUES ('$new_planid', '$user_id', 'active', '$start', '$end')";
+        $run_insert = mysqli_query($connect, $insert);
         header("Location:subscription.php");
     }
 }
@@ -93,14 +94,7 @@ if(isset($_POST['pay'])){
         </div>
 
 <!-- <end part of visa card> -->
-
-
-
-
-
-
-
-
+        
  <!-- start work space of inputs -->
 
         <form method="POST">
@@ -150,7 +144,7 @@ if(isset($_POST['pay'])){
                 </div>
                 <div class="btns">
                     <div class="buttons">
-                      <button class="cssbuttons-io-button addto" name="pay">
+                      <button class="cssbuttons-io-button addto" type="submit" name="pay">
                         <a href="#">Pay</a>
                         <div class="icon">
                           <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
