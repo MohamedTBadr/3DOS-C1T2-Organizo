@@ -45,11 +45,11 @@ include 'connection.php';
              justify-content-center
              align-items-center
              vh-100">
-    <div class="w-400 shadow p-4 rounded">
+    <div class="w-400 shadow p-4 rounded " id="bigdiv">
     	<a href="home.php"
     	   class="fs-4 link-dark">&#8592;</a>
 
-    	   <div class="d-flex align-items-center">
+    	   <div class="d-flex align-items-center" id="frstdiv">
     	   	  <img src="./img/profile/<?=$chatWith['image']?>"
     	   	       class="w-15 rounded-circle">
 
@@ -86,11 +86,10 @@ include 'connection.php';
 						<div style="display: flex; justify-content: end;">
 							<p class="rtext align-self-end border rounded p-2 mb-1">
 								<?=$chat['message']?> 
+								<a href="./img/chat file/<?= htmlspecialchars($chat['file']) ?>" target="_blank"><?= htmlspecialchars($chat['file']) ?></a>
 								<small class="d-block">
 									<?=$chat['created_at']?>
 								</small>
-								<a href="./img/chat file/<?= htmlspecialchars($chat['file']) ?>" target="_blank">open file</a>
-
 								<div class="dropdown">
 									<ul>
 										<li><a class="dropdown-item edit-message" data-id="<?=$chat['chat_id']?>" href="javascript:void()">Edit</a></li>
@@ -135,11 +134,11 @@ include 'connection.php';
     	   </div>
     	   <!-- <div class="input-group mb-3"> -->
 			<form class="input-group mb-3" id="chatForm" enctype="multipart/form-data">
-    	   	   <textarea cols="3"
+    	   	   <textarea style="border: 1px solid white;" cols="3"
     	   	             id="message"
     	   	             class="form-control" placeholder="Write your message.."></textarea>
 						 <input type="file" id="file" name="file" for="icon" class="file">
-<label for="file">
+						 <label for="file">
 				<div style="background-color: white;height: 100%;">
 					<span>
 						<svg style="width: 70%;
@@ -184,10 +183,12 @@ include 'connection.php';
 					</div>
 					<!-- <i class="fa-solid fa-paperclip" id="icon"></i> -->
 				</label>
-    	       <button class="btn btn-primary"
+    	        <button class="btn btn-primary"
     	   	           id="sendBtn">
     	   	   	  <i class="fa fa-paper-plane"></i>
-    	   	   </button>
+    	   	    </button>
+				
+
 			</form>
     	   <!-- </div> -->
 
@@ -323,7 +324,7 @@ include 'connection.php';
  </html>
 <?php
   }else{
-  	header("location:login.php");
+  	header("location:index.php");
    	exit;
   }
  ?>
