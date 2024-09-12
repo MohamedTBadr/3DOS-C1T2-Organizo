@@ -138,7 +138,7 @@ include 'connection.php';
     	   	   <textarea cols="3"
     	   	             id="message"
     	   	             class="form-control" placeholder="Write your message.."></textarea>
-						 <input type="file" id="file" name="file">
+						 <input type="file" id="file" name="file" for="icon" class="file">
 <label for="file">
 				<div style="background-color: white;height: 100%;">
 					<span>
