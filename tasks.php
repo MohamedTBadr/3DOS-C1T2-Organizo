@@ -2,8 +2,8 @@
 // include("connection.php");
 include ('nav.php');
 
-if(!isset($_SESSION['user_id'], $_GET['sid']))
-    header ("Location: index.php");
+// if(!isset($_SESSION['user_id'], $_GET['sid']))
+//     header ("Location: index.php");
 
 if(isset($_GET['sid'])) {
     $sprint_id = $_GET['sid'];
@@ -32,25 +32,21 @@ WHERE `task`.`sprint_id` = '$sprint_id' AND `task_status`= 3 AND `task`.`hidden`
         $run_update = mysqli_query($connect, $update);
     }
 
-    if (isset($_GET['deletee'])) {
+    if (isset($_GET['deletee']) && isset($_GET['sid'])) {
         $id = mysqli_real_escape_string($connect, $_GET['deletee']);
-        $delete = "DELETE FROM task WHERE task_id = '$id' And `sprint_id`= $sprint_id";
+        $sprint_id = mysqli_real_escape_string($connect, $_GET['sid']); // Fetch sid from URL
     
+        $delete = "DELETE FROM task WHERE task_id = '$id' AND `sprint_id` = '$sprint_id'";
+        
         $run_delete = mysqli_query($connect, $delete);
-    
+        
         if (!$run_delete) {
             die('Delete query failed: ' . mysqli_error($connect));
         } else {
-            header("Location: tasks.php?sid=$sprint_id");           
+            header("Location: tasks.php?sid=$sprint_id");  // Redirect back with sid
         }
     }
 
-    // if (isset($_POST['submit'])) {
-    //     $comment = $_POST['comment'];
-    //     $task_id = $_POST['task_id'];
-    //     $insert = "INSERT INTO `comment` VALUES (NULL, NULL, '$comment', '$user_id', '$task_id')";
-    //     $run_insert = mysqli_query($connect, $insert);
-    // }
     if (isset($_POST['submit'])) {
         $comment = mysqli_real_escape_string($connect, $_POST['comment']);
         $task_id = $_POST['task_id'];
@@ -93,6 +89,45 @@ if(isset($_POST['search'])){
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Popup delete styling */
+        .popup {
+            display: none; /* Hide popups by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            border-radius: 7px;
+            color:#58151c;
+        }
+        .popup.show {
+            display: block; /* Show popup when class 'show' is added */
+        }
+        .overlay {
+            display: none; /* Hide overlay by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .overlay.show {
+            display: block; /* Show overlay when class 'show' is added */
+        }
+        .lol{
+            color:#58151c;
+        }
+    </style>
 </head>
 <body>
     <div class="haha">
@@ -158,8 +193,17 @@ if(isset($_POST['search'])){
                         <?php 
  if($role_id==1){
     ?>
- <a  id="delete" class="btn btn-1 btn-outline-secondary" href="archive.php?hide=<?php echo $key ['task_id']?>"><i class="fa-solid fa-box-archive"></i></a>
- <a id="edit" class="btn btn-1 btn-outline-secondary" href="tasks.php?deletee=<?php echo $key['task_id']; ?>&sid=<?php echo $key['sprint_id']; ?>"><i class="fa-solid fa-trash"></i></a>
+ <a id="delete" class="btn btn-1 btn-outline-secondary" href="archive.php?hide=<?php echo $key ['task_id']?>"><i class="fa-solid fa-box-archive"></i></a>
+ <a id="edit" class="btn btn-1 btn-outline-secondary" onclick="openTaskPopup(<?php echo $key['task_id']?>)"><i class="fa-solid fa-trash"></i></a>
+<form method="GET" id="deleteTaskForm-<?php echo $key['task_id'];?>" style="display:none;">
+    <input type="hidden" name="deletee" value="<?php echo $key['task_id'] ?>">
+    <input type="hidden" name="sid" value="<?php echo $sprint_id; ?>"> 
+</form>
+<div class="popup alert alert-danger" id="popup-task-<?php echo $key['task_id'];?>" role="alert">
+    <h3><i class="fa-solid fa-triangle-exclamation"></i>Are you sure you want to delete this task?</h3>
+    <button type="button" class="lol btn btn-outline-dark" onclick="confirmTaskDelete()">Yes</button>
+    <button type="button" class="lol btn btn-outline-dark" onclick="closeTaskPopup()">No</button>
+</div>
 <?php } else {}?>
                     </div>
                 </div>
@@ -221,7 +265,16 @@ if(isset($_POST['search'])){
  if($role_id==1){
     ?>
   <a  id="delete" class="btn btn-1 btn-outline-secondary" href="archive.php?hide=<?php echo $key ['task_id']?>"><i class="fa-solid fa-box-archive"></i></a>
-  <a id="edit" class="btn btn-1 btn-outline-secondary" href="tasks.php?deletee=<?php echo $key['task_id']; ?>&sid=<?php echo $key['sprint_id']; ?>"><i class="fa-solid fa-trash"></i></a>
+  <a id="edit" class="btn btn-1 btn-outline-secondary" onclick="openTaskPopup(<?php echo $key['task_id']?>)"><i class="fa-solid fa-trash"></i></a>
+<form method="GET" id="deleteTaskForm-<?php echo $key['task_id'];?>" style="display:none;">
+    <input type="hidden" name="deletee" value="<?php echo $key['task_id'] ?>">
+    <input type="hidden" name="sid" value="<?php echo $sprint_id; ?>">
+</form>
+<div class="popup alert alert-danger" id="popup-task-<?php echo $key['task_id'];?>" role="alert">
+    <h3><i class="fa-solid fa-triangle-exclamation"></i>Are you sure you want to delete this task?</h3>
+    <button type="button" class="lol btn btn-outline-dark" onclick="confirmTaskDelete()">Yes</button>
+    <button type="button" class="lol btn btn-outline-dark" onclick="closeTaskPopup()">No</button>
+</div>
 <?php } else {}?>
 
                     </div>
@@ -281,7 +334,16 @@ if(isset($_POST['search'])){
  if($role_id==1){
     ?>
   <a  id="delete" class="btn btn-1 btn-outline-secondary" href="archive.php?hide=<?php echo $key ['task_id']?>"><i class="fa-solid fa-box-archive"></i></a>
-  <a id="edit" class="btn btn-1 btn-outline-secondary" href="tasks.php?deletee=<?php echo $key['task_id']; ?>&sid=<?php echo $key['sprint_id']; ?>"><i class="fa-solid fa-trash"></i></a>
+  <a id="edit" class="btn btn-1 btn-outline-secondary" onclick="openTaskPopup(<?php echo $key['task_id']?>)"><i class="fa-solid fa-trash"></i></a>
+<form method="GET" id="deleteTaskForm-<?php echo $key['task_id'];?>" style="display:none;">
+    <input type="hidden" name="deletee" value="<?php echo $key['task_id'] ?>">
+    <input type="hidden" name="sid" value="<?php echo $sprint_id; ?>"> 
+</form>
+<div class="popup alert alert-danger" id="popup-task-<?php echo $key['task_id'];?>" role="alert">
+    <h3><i class="fa-solid fa-triangle-exclamation"></i>Are you sure you want to delete this task?</h3>
+    <button type="button" class="lol btn btn-outline-dark" onclick="confirmTaskDelete()">Yes</button>
+    <button type="button" class="lol btn btn-outline-dark" onclick="closeTaskPopup()">No</button>
+</div>
 <?php } else {}?>
 
                     </div>
@@ -331,6 +393,20 @@ if(isset($_POST['search'])){
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+let deleteTaskId;
+
+function openTaskPopup(taskId) {
+    deleteTaskId = taskId;
+    document.getElementById('popup-task-' + taskId).classList.add('show');
+}
+
+function closeTaskPopup() {
+    document.getElementById('popup-task-' + deleteTaskId).classList.remove('show');
+}
+
+function confirmTaskDelete() {
+    document.getElementById('deleteTaskForm-' + deleteTaskId).submit();
+}
 
 $(document).ready(function() {
     $("#searchText").on("input", function() {
