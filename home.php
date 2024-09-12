@@ -1,9 +1,12 @@
 <?php
-# database connection file
-include 'connection.php';
+	# database connection file
+	include 'connection.php';
 
-if (isset($_SESSION['user_id'])) {
+
+  if (isset($_SESSION['user_id'])) {
   	
+
+
   	include 'app/helpers/user.php';
   	include 'app/helpers/conversations.php';
     include 'app/helpers/timeAgo.php';
@@ -43,7 +46,7 @@ if (isset($_SESSION['user_id'])) {
     			            align-items-center">
     			    <img src="./img/profile/<?=$user['image']?>"
     			         class="w-25 rounded-circle">
-                    <h3 class="fs-xs m-2"><?=$user['first_name']." ".$user['last_name']?></h3> 
+                    <h3 class="fs-xs m-2" style="color: black;"><?=$user['first_name']." ".$user['last_name']?></h3> 
     			</div>
 				<!-- <form method="POST">
 				<button type="submit" name="logout">Logout</button></form> -->
@@ -73,7 +76,7 @@ if (isset($_SESSION['user_id'])) {
 	    					            align-items-center">
 	    					    <img src="img/profile/<?=$conversation['image']?>"
 	    					         class="w-10 rounded-circle">
-	    					    <h3 class="fs-xs m-2">
+	    					    <h3 class="fs-xs m-2" style="color: black;">
 	    					    	<?=$conversation['first_name']?><br>
                       <small>
                         <?php 
@@ -154,6 +157,6 @@ if (isset($_SESSION['user_id'])) {
 </html>
 <?php
   }else{
-  	header("location:login.php");
+	header("location:index.php");
   }
  ?>
