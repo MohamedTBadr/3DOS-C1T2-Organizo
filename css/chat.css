@@ -37,11 +37,12 @@ small {
 	overflow-y: auto;
 	overflow-x: hidden;
 	max-height: 50vh;
+	background-image: url(../img/download.jpg);
 }
 .rtext {
     width: auto;
-    background: #f8f9fa;
-    color: #444;
+    background: #075E54;
+    color: white;
     max-width: 50%;
 }
 
@@ -76,3 +77,48 @@ textarea {
 }
 
 /*message_status*/
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: white;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+li{
+	color: white;
+}
+a{
+	color: #34B7F1;
+}
+h3{
+	color: white;
+}
+#frstdiv{
+	/* background-image: url(../img/download.jpg); */
+	box-shadow: rgba(255, 255, 255, 0.123) 10px 20px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+#bigdiv{
+background-image: url(../img/download.jpg);
+/* height: 100%;
+width: 100%; */
+}
+.link-dark {
+    color: white;
+}
+#icon {
+    margin-left: -13%;
+    position: absolute;
+    margin-top: 20px;
+    /* height: 15px; */
+}
+.file{
+	display: none;
+    visibility: none;
+}
