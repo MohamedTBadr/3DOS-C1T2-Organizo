@@ -2,8 +2,8 @@
 // include("connection.php");
 include ('nav.php');
 
-// if(!isset($_SESSION['user_id'], $_GET['sid']))
-//     header ("Location: index.php");
+if(!isset($_SESSION['user_id'], $_GET['sid']))
+    header ("Location: index.php");
 
 if(isset($_GET['sid'])) {
     $sprint_id = $_GET['sid'];
