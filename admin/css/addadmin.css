@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  :root {
+    --primary-color: #080a74; 
+  --secondary-color:#f6d673;
+  --Thirdly-color:#d6d9e0 ;
+  --fourthly-color:#1d1d27;
+  }
+ body{
+  background-image:url(../img/bhimg.jpg) ;
+  background-size: cover;
+  background-repeat: no-repeat; 
+}
+.background{
+height:100%; 
+width: 100%;
+display: flex; 
+justify-content: center;
+opacity: 0.9;
+}
+.container-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  background-repeat:no-repeat;
+  background-size: cover;
+  width: 100%;
+  height:100%;
+  margin-top: -90px;
+  opacity: inherit;
+  opacity: 80%;
+}
+.wrapper{
+  width: 30%;
+ height: 400PX;
+  border:4px solid gold;
+  border-radius: 20PX;
+  margin-top: 15%;
+  text-align: center;
+  background-color:#1d1d27;
+  padding : 40px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.wrapper:hover{
+  color: rgb(199, 169, 0);
+ box-shadow: 2px 2px 15px rgb(213, 181, 0) inset;
+}
+form-wrapper{
+
+display: flex;
+align-items:center ;
+justify-content: center;
+width: 100%;
+height:100%;  
+transition: 1s ease-in-out;
+}
+h2{
+  font-size: 40px;
+ color:#d6d9e0;
+ font-weight: bold;
+ text-align: center;
+ }
+ .input-group-text{
+  background-color: #d6d9e0;
+  color: #f6d673 !important;
+ }
+ .input-group{
+ position: relative;
+ margin: 30px 0;
+ border-bottom: 2px solid #d6d9e0 ;
+ 
+ 
+ }
+ select#inputGroupSelect01 {
+  margin-left: 35%;
+}
+ .input-group label{
+     position: absolute;
+ top:50% ;
+ left: 10px;
+ transform: translateY(-50%
+ );
+ font-size: 16px;
+ color:#d6d9e0;
+ pointer-events: none;
+ transition: .5s;
+ font-weight: 700;
+ }
+ 
+ 
+ 
+ .input-group input{
+     width: 390px ;
+     height: 40px;
+     font-size: 16px;
+     color:#d6d9e0;
+     padding:0 5px ;
+     background:transparent;
+     border: none;
+     outline: none;
+ 
+ }
+ 
+ .input-group input:focus~label,
+ .input-group input:valid~label{
+     top: -5px;
+ } 
+ .remember{  margin:-5px 0 15px 5px  ;
+ 
+ }
+ .remember label {
+     color: green;
+     font-size: 20px;
+ font-weight: bold
+ }
+ 
+ 
+ .remember label input {
+      accent-color: green
+      ;
+      font-size: 15px;
+ 
+ }
+.Btn {
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.9em;
+  background-color: var(--secondary-color);
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  font-family: inherit;
+  margin-bottom: 5%;
+  margin-right: 5%;
+  width: 170px;
+}
+.Btn:hover {
+  letter-spacing: 3px;
+  background-color: var(--secondary-color);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(255, 255, 255) 0px 5px 20px 0px;
+}
+
+.logoIcon path {
+  fill: rgb(121, 103, 3);
+}
+
+
+.terms{
+  margin-left: -350px;
+}
+.TAC{
+  margin-left: -180px;
+  margin-top: -17px;
+  color: #080a74;
+}
+.FRG{
+margin-left: 230px;
+text-decoration: none;
+color: #f6d673;
+margin-bottom: 40px;
+}
+.close{
+  color: black;
+  position: absolute;
+  right: 10%;
+  top: 5%;
+}
+.DHA{
+  margin-left: 205px;
+text-decoration: none;
+color: #f6d673;
+}
+@media(max-width:750px){
+  .container-main{
+    height: 114vh;
+  }
+  .wrapper{
+    width: 90%;
+  }
+}
