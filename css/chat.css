@@ -2,7 +2,7 @@
 	min-height: 100vh;
 }
 .w-400 {
-	width: 50%;
+	width: 80%;
 }
 .fs-xs {
 	font-size: 1rem;
@@ -29,7 +29,7 @@ a {
 	font-size: 1.4rem;
 }
 small {
-	color: #bbb;
+	color: black;
 	font-size: 0.7rem;
 	text-align: right;
 }
@@ -37,7 +37,9 @@ small {
 	overflow-y: auto;
 	overflow-x: hidden;
 	max-height: 50vh;
-	background-image: url(../img/download.jpg);
+	background-image: url(../img/desktop-wallpaper-message-background-whatsapp-message-background.jpg);
+	/* background-size: cover;
+	background-repeat: no-repeat; */
 }
 .rtext {
     width: auto;
@@ -84,12 +86,16 @@ textarea {
     padding: .25rem 1rem;
     clear: both;
     font-weight: 400;
-    color: white;
+    color: #075E54;
     text-align: inherit;
     text-decoration: none;
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+}
+.dropdown-item:hover{
+	background-color:#3289c8 ;
+	color: white;
 }
 li{
 	color: white;
@@ -98,22 +104,25 @@ a{
 	color: #34B7F1;
 }
 h3{
-	color: white;
+	color: black;
+	
 }
 #frstdiv{
 	/* background-image: url(../img/download.jpg); */
-	box-shadow: rgba(255, 255, 255, 0.123) 10px 20px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	box-shadow: rgba(255, 255, 255, 0) 10px 20px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 #bigdiv{
-background-image: url(../img/download.jpg);
-/* height: 100%;
-width: 100%; */
+background-image: url(../img/desktop-wallpaper-message-background-whatsapp-message-background.jpg);
+/* background-size: cover;
+	background-repeat: no-repeat; */
+height: 100%;
+width: 100%;
 }
 .link-dark {
     color: white;
 }
 #icon {
-    margin-left: -13%;
+    margin-left: -6%;
     position: absolute;
     margin-top: 20px;
     /* height: 15px; */
@@ -121,4 +130,70 @@ width: 100%; */
 .file{
 	display: none;
     visibility: hidden;
+}
+button#dropdownMenuButton1 {
+    background: none;
+    color: black;
+    border: none;
+}
+.input-group .btn {
+    position: relative;
+    z-index: 2;
+    background-color: #075E54;
+    border-color: #075E54;
+}
+.w-15 {
+    width: 8%;
+}
+.w-25{
+	width: 15% !important;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+img, svg {
+    vertical-align: middle;
+    height: 80%;
+    /* width: 64%; */
+}
+.txtdiv{
+	margin-top: 3%;
+}
+.link-dark {
+    color: black;
+}
+#scndtxt{
+	color: white;
+}
+.edittxt {
+    font-size: 13px;
+    margin-top: 28px;
+}
+#eyeicon {
+    color: gold;
+    font-size: 11px;
+    float: inline-end;
+}
+.fs-sm {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+#containerdiv{
+	background-image:url(../img/desktop-wallpaper-message-background-whatsapp-message-background.jpg) ;
+    margin: auto;
+}
+#firstcont{
+	background-image: url(../img/desktop-wallpaper-message-background-whatsapp-message-background.jpg);
+	/* background-size: cover; */
+	/* background-repeat: no-repeat; */
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid black;
 }
