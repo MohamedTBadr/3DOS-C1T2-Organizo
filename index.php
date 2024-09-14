@@ -138,6 +138,7 @@ if (isset($_SESSION['user_id'])) {
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="./my_tasks.php">My Tasks</a></li>
+                                <li><a class="dropdown-item" href="./home.php">Chat</a></li>
                                 <!-- <li><a class="dropdown-item" href="./calendar.php">Calendar</a></li> -->
                                 <li><a class="dropdown-item" href="./archive_taskss.php">Archive</a></li>
                             </ul>
