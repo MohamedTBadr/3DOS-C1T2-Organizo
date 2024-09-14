@@ -8,7 +8,7 @@ if(!isset($_SESSION['user_id']))
 $userid = $_SESSION['user_id'];
 $select = "SELECT * FROM `user` 
             LEFT JOIN `plan` ON `user`.`plan_id` = `plan`.`plan_id` 
-            LEFT JOIN `subscription` ON `plan`.`plan_id` = `subscription`.`plan_id` 
+            LEFT JOIN `subscription` ON `user`.`plan_id` = `subscription`.`plan_id` 
             WHERE `user`.`user_id` = '$userid'";
 $run=mysqli_query($connect,$select);
 $fetch = mysqli_fetch_assoc($run);
