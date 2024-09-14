@@ -5,9 +5,15 @@ if(!isset($_SESSION['user_id']))
     header ("Location: index.php");
 $assign=$_SESSION['user_id'];
 
-$display_query = "SELECT `task_id`, `task_name`, `start_date`, `end_date`, `priority_id` FROM
-`task` WHERE `assign_by`= '$assign' OR `assignie`='$assign'";
-$run = mysqli_query($connect, $display_query);   
+$select_sprint= "SELECT * FROM `sprint`";
+$run_sprint= mysqli_query($connect, $select_sprint);
+$fetch_sprint= mysqli_fetch_assoc($run_sprint);
+$sprint_id= $fetch_sprint['sprint_id'];
+
+$display_query = "SELECT `task_id`, `task_name`, `start_date`, `end_date`, `sprint_id`, `priority_id` FROM `task`
+WHERE (`assign_by`= '$assign') OR (`assignie`='$assign') AND (`sprint_id` = '$sprint_id')";
+$run = mysqli_query($connect, $display_query);  
+
 
 
 $subs="SELECT * FROM `subscription`  
@@ -39,20 +45,21 @@ if ($count > 0) {
     $data_arr = array();
     $i = 0;
     foreach($run as $data_row) {	
-        $data_arr[$i]['task_id'] = $data_row['task_id'];
+        // $data_arr[$i]['task_id'] = $data_row['task_id'];
         $data_arr[$i]['task_name'] = $data_row['task_name'];
         $data_arr[$i]['start_date'] = date("Y-m-d", strtotime($data_row['start_date']));
         $data_arr[$i]['end_date'] = date("Y-m-d", strtotime($data_row['end_date']));
+        $data_arr[$i]['task_url'] = 'task_details.php?task_id=' . $data_row['task_id'];
         
         // Assign colors based on priority
         if ($data_row['priority_id'] == 1) {
-            $data_arr[$i]['bg_color'] = '#044763'; // Dark Blue
+            $data_arr[$i]['bg_color'] = 'rgb(109, 177, 166)'; // Dark Blue
             $data_arr[$i]['color'] = '#ffffff';
         } elseif ($data_row['priority_id'] == 2) {
-            $data_arr[$i]['bg_color'] = '#f3ab3f'; // Orange
+            $data_arr[$i]['bg_color'] = 'rgb(39, 48, 83) '; // Orange
             $data_arr[$i]['color'] = '#ffffff';
         } elseif ($data_row['priority_id'] == 3) {
-            $data_arr[$i]['bg_color'] = '#E9E3D5'; // Yellow
+            $data_arr[$i]['bg_color'] = '#fda521'; // Yellow
             $data_arr[$i]['color'] = '#ffffff';
         }
         $i++;

@@ -10,19 +10,19 @@ if(isset($_GET['plan']))
     $new_planid=$_GET['plan'];
 
 if(isset($_POST['pay'])){
-    $card_number = $_POST['card_number'];
-    if (strlen($card_number) != 16)
-        $error = "Invalid Card Number";
-    else if (empty($_POST['C-HOLDER']))
-        $error = "Cardholder can't be left empty";
-    else if (empty($_POST['MM']) || $_POST['MM'] > 12 || $_POST['MM'] < 1)
-        $error = "You must select a valid month";
-    else if (empty($_POST['YY']) || $_POST['YY'] > 2035 || $_POST['YY'] < 2024)
-        $error = "You must select a valid year";
-    else if (empty($_POST['cvv']) || strlen($_POST['cvv']) < 3 || strlen($_POST['cvv']) > 3)
-        $error = "Insert a valid CVV";
-    else
-    {
+    // $card_number = $_POST['card_number'];
+    // if (strlen($card_number) != 16)
+    //     $error = "Invalid Card Number";
+    // else if (empty($_POST['C-HOLDER']))
+    //     $error = "Cardholder can't be left empty";
+    // else if (empty($_POST['MM']) || $_POST['MM'] > 12 || $_POST['MM'] < 1)
+    //     $error = "You must select a valid month";
+    // else if (empty($_POST['YY']) || $_POST['YY'] > 2035 || $_POST['YY'] < 2024)
+    //     $error = "You must select a valid year";
+    // else if (empty($_POST['cvv']) || strlen($_POST['cvv']) < 3 || strlen($_POST['cvv']) > 3)
+    //     $error = "Insert a valid CVV";
+    // else
+    // {
         $user_id = $_SESSION['user_id'];
         $edit = " UPDATE `user`
             SET `plan_id` = '$new_planid'
@@ -38,7 +38,7 @@ if(isset($_POST['pay'])){
         $insert = "INSERT INTO `subscription` VALUES ('$new_planid', '$user_id', 'active', '$start', '$end')";
         $run_insert = mysqli_query($connect, $insert);
         header("Location:subscription.php");
-    }
+    // }
 }
 ?>
 <!DOCTYPE html>
@@ -53,6 +53,29 @@ if(isset($_POST['pay'])){
     <link rel="stylesheet" href="css/payment.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="js/payment.js"></script>   
+
+    <style>
+      .warning
+      {
+          display: none; color: red;
+          position: static;
+          width: 65%;
+          margin: -13% auto -1%;
+          font-size: 1vw;
+      }
+      .warning.visible {display: block}
+      #s-btn {margin-top: 20px}
+
+      .error {
+          font-size: 15px;
+          margin: 2px;
+          text-align: center;
+          color: red;
+          width: 100%;
+      }
+
+    </style>
 </head>
 
 <body>
@@ -97,21 +120,23 @@ if(isset($_POST['pay'])){
         
  <!-- start work space of inputs -->
 
-        <form method="POST">
+        <form method="POST" onsubmit="return validateForm()">
             <div class="inputBox">
                 <?php if(isset($error)) echo "<p style='color: red'>$error</p>" ?>
                 <span class="span">card number</span>
-                <input type="number"  name="card_number" class="card-number-input" value="<?php echo isset($_POST['card_number']) ? $_POST['card_number'] : '';?>">
+                <input type="number" maxlength="16" name="card_number" id="card-number-input" class="card-number-input" oninput="validateNum()" value="<?php echo isset($_POST['card_number']) ? $_POST['card_number'] : '';?>">
+                <span name="numError" id="numError" class="error" style="display:none;"></span>
             </div>
             <div class="inputBox">
                 <span class="span">card holder</span>
-                <input type="text" class="card-holder-input" name="C-HOLDER" value="<?php echo isset($_POST['C-HOLDER']) ? $_POST['C-HOLDER'] : ''; ?>">
+                <input type="text" class="card-holder-input" name="C-HOLDER" id="card-holder-input" oninput="validateName()" value="<?php echo isset($_POST['C-HOLDER']) ? $_POST['C-HOLDER'] : ''; ?>">
+                <span name="nameError" id="nameError" class="error" style="display:none;"></span>
             </div>
             <div class="flexbox">
                 <div class="inputBox">
                     <span class="span">expiration mm</span>
-                    <select name="MM" id="" class="month-input" required>
-                        <option value="month" selected disabled>month</option>
+                    <select name="MM" id="month-input" oninput="validateMonth()" class="month-input" required>
+                        <option value="month" id="MONTH">Month</option>
                         <?php
                         for ($i = 1; $i <= 12; $i++)
                         {
@@ -123,11 +148,12 @@ if(isset($_POST['pay'])){
                         }
                         ?>
                     </select>
+                    <span name="monthError" id="monthError" class="error" style="display:none;"></span>
                 </div>
                 <div class="inputBox">
                     <span class="span">expiration yy</span>
-                    <select name="YY" id="" class="year-input" required>
-                        <option value="year" selected disabled>year</option>
+                    <select name="YY" id="year-input" oninput="validateYear()" class="year-input" required>
+                        <option value="year" id="YEAR">Year</option>
                         <?php
                         for ($i = 2024; $i <= 2035; $i++)
                         {
@@ -136,10 +162,12 @@ if(isset($_POST['pay'])){
                         }
                         ?>
                     </select>
+                    <span name="yearError" id="yearError" class="error" style="display:none;"></span>
                 </div>
                 <div class="inputBox">
                     <span>cvv</span>
-                    <input type="text" maxlength="3" class="cvv-input" name="cvv" value="<?php echo isset($_POST['cvv']) ? $_POST['cvv'] : ''; ?>">
+                    <input type="text" maxlength="3" class="cvv-input" name="cvv" id="cvv-input" oninput="validateCvv()" value="<?php echo isset($_POST['cvv']) ? $_POST['cvv'] : ''; ?>">
+                    <span name="cvvError" id="cvvError" class="error" style="display:none;"></span>
                 </div>
                 </div>
                 <div class="btns">
@@ -158,77 +186,58 @@ if(isset($_POST['pay'])){
                   </div>
     </form>
 
-</div>    
-    
+</div> 
 <!-- end work space of input -->
 
+<script>
+// Card Number Display and Validation
+document.getElementById('card-number-input').oninput = () => {
+    document.querySelector('.card-number-box').innerText = document.getElementById('card-number-input').value;
+    validateNum();
+};
 
+// Card Holder Name Display and Validation
+document.getElementById('card-holder-input').oninput = () => {
+    document.querySelector('.card-holder-name').innerText = document.getElementById('card-holder-input').value;
+    validateName();
+};
 
+// Expiration Month Display and Validation
+document.getElementById('month-input').oninput = () => {
+    document.querySelector('.exp-month').innerText = document.getElementById('month-input').value;
+    validateMonth();
+};
 
+// Expiration Year Display and Validation
+document.getElementById('year-input').oninput = () => {
+    document.querySelector('.exp-year').innerText = document.getElementById('year-input').value;
+    validateYear();
+};
 
+// CVV Display and Validation
+document.getElementById('cvv-input').oninput = () => {
+    document.querySelector('.cvv-box').innerText = document.getElementById('cvv-input').value;
+    validateCvv();
+};
 
+// Rotate card on CVV focus
+document.getElementById('cvv-input').onmouseenter = () => {
+    document.querySelector('.front').style.transform = 'perspective(1000px) rotateY(-180deg)';
+    document.querySelector('.back').style.transform = 'perspective(1000px) rotateY(0deg)';
+};
 
+// Rotate card back on CVV blur
+document.getElementById('cvv-input').onmouseleave = () => {
+    document.querySelector('.front').style.transform = 'perspective(1000px) rotateY(0deg)';
+    document.querySelector('.back').style.transform = 'perspective(1000px) rotateY(180deg)';
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <WORK space for js> -->
-
-
-                        <script>
-
-                            document.querySelector('.card-number-input').oninput = () => {
-                                document.querySelector('.card-number-box').innerText = document.querySelector('.card-number-input').value;
-                            }
-
-                            document.querySelector('.card-holder-input').oninput = () => {
-                                document.querySelector('.card-holder-name').innerText = document.querySelector('.card-holder-input').value;
-                            }
-
-                            document.querySelector('.month-input').oninput = () => {
-                                document.querySelector('.exp-month').innerText = document.querySelector('.month-input').value;
-                            }
-
-                            document.querySelector('.year-input').oninput = () => {
-                                document.querySelector('.exp-year').innerText = document.querySelector('.year-input').value;
-                            }
-
-                            document.querySelector('.cvv-input').onmouseenter = () => {
-                                document.querySelector('.front').style.transform = 'perspective(1000px) rotateY(-180deg)';
-                                document.querySelector('.back').style.transform = 'perspective(1000px) rotateY(0deg)';
-                            }
-
-                            document.querySelector('.cvv-input').onmouseleave = () => {
-                                document.querySelector('.front').style.transform = 'perspective(1000px) rotateY(0deg)';
-                                document.querySelector('.back').style.transform = 'perspective(1000px) rotateY(180deg)';
-                            }
-
-                            document.querySelector('.cvv-input').oninput = () => {
-                                document.querySelector('.cvv-box').innerText = document.querySelector('.cvv-input').value;
-                            }
-
-                        </script>
-
-
-
-<!-- <end of work space for js> -->
-
-
-
+// Prevent form submission if validation fails
+document.querySelector('form').onsubmit = function (e) {
+    if (!validateForm()) {
+        e.preventDefault();
+    }
+};
+</script>
 </body>
-
 </html>

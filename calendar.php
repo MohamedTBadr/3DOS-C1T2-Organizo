@@ -21,6 +21,9 @@ if(!isset($_SESSION['user_id']))
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <style>
         /* Customize the calendar header */
+
+
+/* new  */
 .fc-header {
   background-color: #333;
   color: #fff;
@@ -33,7 +36,7 @@ if(!isset($_SESSION['user_id']))
 }
 
 .fc-button {
-  background-color: #337ab7;
+  background-color: #fda521;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -43,11 +46,11 @@ if(!isset($_SESSION['user_id']))
 }
 
 .fc-button:hover {
-  background-color: #23527c;
+  background-color: #fda521;
 }
 
 .fc-button:active {
-  background-color: #1d4e7a;
+  background-color: #fda521;
 }
 
 /* Customize the calendar body */
@@ -71,7 +74,7 @@ if(!isset($_SESSION['user_id']))
 }
 
 .fc-event {
-  background-color: #337ab7;
+  background-color: #fda521;
   color: #fff;
   border-radius: 5px;
   padding: 10px;
@@ -101,7 +104,7 @@ if(!isset($_SESSION['user_id']))
 
 /* Customize the today button */
 .fc-today-button {
-  background-color: #337ab7;
+  background-color: #fda521;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -109,13 +112,21 @@ if(!isset($_SESSION['user_id']))
   font-size: 16px;
   cursor: pointer;
 }
+.h1, h1 {
+    font-size: 2.5rem;
+    color: #fda521;
+}
+.fc .fc-toolbar>*>:first-child {
+    margin-left: 0;
+    color: fda521;
+}
 
 .fc-today-button:hover {
-  background-color: #23527c;
+  background-color: #fda521;
 }
 
 .fc-today-button:active {
-  background-color: #1d4e7a;
+  background-color: #fda521;
 }
     </style>
 </head>
@@ -143,7 +154,8 @@ $(document).ready(function() {
                         start: item.start_date,
                         end: item.end_date,
                         backgroundColor: item.bg_color,
-                        textColor: item.color
+                        textColor: item.color,
+                        url: item.task_url
                     });
                     if (item.plan_type) {
                         tasks.push({
@@ -159,11 +171,11 @@ $(document).ready(function() {
                     defaultView: 'month',
                     editable: true,
                     events: tasks,
-                    eventRender: function(event, element) {
-                        element.bind('click', function() {
-                            alert(event.title + "\nStart: " + event.start.format("YYYY-MM-DD") + "\nEnd: " + event.end.format("YYYY-MM-DD"));
-                        });
-                    }
+                    // eventRender: function(event, element) {
+                    //     element.bind('click', function() {
+                    //         // alert(event.title + "\nStart: " + event.start.format("YYYY-MM-DD") + "\nEnd: " + event.end.format("YYYY-MM-DD"));
+                    //     });
+                    // }
                 });
             } else {
                 $('#calendar').fullCalendar({
