@@ -298,10 +298,13 @@ h3 {
 
     display: flex;
 }
-.h5, h5 {
-    font-size: 1.25rem;
-    padding-left: 8%;
+
+.h5, h5 ,a {
+    font-size: 20px;
+    padding-left: 3px;
+    color:black;
 }
+
 .form-floating>label{
     left: 6%;
 }
