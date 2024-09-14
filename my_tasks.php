@@ -13,18 +13,21 @@ $user_id=$_SESSION['user_id'];
 $select1 = "SELECT * FROM `task` 
 JOIN category ON `task`.`category_id` = `category`.`category_id`
 JOIN priority ON `task`.`priority_id` = `priority`.`priority_id`
+JOIN `sprint` ON `task`.`sprint_id` = `sprint`.`sprint_id`
 WHERE `task_status`= 1 AND `task`.`hidden` = 'unarchive' AND `task`.`assignie`='$user_id'";
 $Run1 = mysqli_query($connect, $select1);
 
 $select2 = "SELECT * FROM `task` 
 JOIN category ON `task`.`category_id` = `category`.`category_id`
 JOIN priority ON `task`.`priority_id` = `priority`.`priority_id`
+JOIN `sprint` ON `task`.`sprint_id` = `sprint`.`sprint_id`
 WHERE `task_status`= 2 AND `task`.`hidden` = 'unarchive' AND `task`.`assignie`='$user_id'";
 $Run2 = mysqli_query($connect, $select2);
 
 $select3 = "SELECT * FROM `task` 
 JOIN category ON `task`.`category_id` = `category`.`category_id`
 JOIN priority ON `task`.`priority_id` = `priority`.`priority_id`
+JOIN `sprint` ON `task`.`sprint_id` = `sprint`.`sprint_id`
 WHERE `task_status`= 3 AND `task`.`hidden` = 'unarchive'  AND `task`.`assignie`='$user_id'";
 $Run3 = mysqli_query($connect, $select3);
 
@@ -83,8 +86,18 @@ if (isset($_POST['submit'])) {
                     <div class="first">
                         <div class="form-control">
                             <p class="text-muted">Task Name</p>
-                            <h5><?php echo $key['task_name']; ?></h5>
+                            <h5>
+                            <a href="mytask-details.php?task_id=<?php echo $key['task_id'] ?>" >
+                                <?php echo $key['task_name']; ?> </a></h5>
+           
                         </div>
+                        <div class="form-control">
+                            <p class="text-muted">Sprint Name</p>
+                            <h5>
+                            <a href="tasks.php?sid=<?php echo $key['sprint_id'] ?>" >
+                                <?php echo $key['sprint_name']; ?></a></h5>
+                        </div>
+                        
                         <div class="category">
                             <h3><?php echo $key['category_name']; ?></h3>
                         </div>
@@ -131,9 +144,18 @@ if (isset($_POST['submit'])) {
             <?php foreach ($Run2 as $key) { ?>
             <div class="card">
                     <div class="first">
-                        <div class="form-control">
+                    <div class="form-control">
                             <p class="text-muted">Task Name</p>
-                            <h5><?php echo $key['task_name']; ?></h5>
+                            <h5>
+                            <a href="mytask-details.php?task_id=<?php echo $key['task_id'] ?>" >
+                                <?php echo $key['task_name']; ?> </a></h5>
+           
+                        </div>
+                        <div class="form-control">
+                            <p class="text-muted">Sprint Name</p>
+                            <h5>
+                            <a href="tasks.php?sid=<?php echo $key['sprint_id'] ?>" >
+                                <?php echo $key['sprint_name']; ?></a></h5>
                         </div>
                         <div class="category">
                             <h3><?php echo $key['category_name']; ?></h3>
@@ -181,9 +203,18 @@ if (isset($_POST['submit'])) {
             <?php foreach ($Run3 as $key) { ?>
             <div class="card">
                     <div class="first">
-                        <div class="form-control">
+                    <div class="form-control">
                             <p class="text-muted">Task Name</p>
-                            <h5><?php echo $key['task_name']; ?></h5>
+                            <h5>
+                            <a href="mytask-details.php?task_id=<?php echo $key['task_id'] ?>" >
+                                <?php echo $key['task_name']; ?> </a></h5>
+           
+                        </div>
+                        <div class="form-control">
+                            <p class="text-muted">Sprint Name</p>
+                            <h5>
+                            <a href="tasks.php?sid=<?php echo $key['sprint_id'] ?>" >
+                                <?php echo $key['sprint_name']; ?></a></h5>
                         </div>
                         <div class="category">
                             <h3><?php echo $key['category_name']; ?></h3>
