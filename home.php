@@ -1,12 +1,9 @@
 <?php
-	# database connection file
-	include 'connection.php';
+# database connection file
+include("connection.php");
 
-
-  if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id'])) {
   	
-
-
   	include 'app/helpers/user.php';
   	include 'app/helpers/conversations.php';
     include 'app/helpers/timeAgo.php';
@@ -18,6 +15,7 @@
   	# Getting User conversations
   	$conversations = getConversation($user['user_id'], $connect);
 
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,21 +34,19 @@
              align-items-center
              vh-100">
     <div class="p-2 w-400
-                rounded shadow">
+                rounded shadow" id="containerdiv">
     	<div>
     		<div class="d-flex
     		            mb-3 p-3 bg-light
 			            justify-content-between
-			            align-items-center">
+			            align-items-center" id="firstcont">
     			<div class="d-flex
     			            align-items-center">
     			    <img src="./img/profile/<?=$user['image']?>"
     			         class="w-25 rounded-circle">
-                    <h3 class="fs-xs m-2" style="color: black;"><?=$user['first_name']." ".$user['last_name']?></h3> 
+                    <h3 class="fs-xs m-2" id="frstname"><?=$user['first_name']." ".$user['last_name']?></h3> 
     			</div>
-				<!-- <form method="POST">
-				<button type="submit" name="logout">Logout</button></form> -->
-
+				
     		</div>
 
     		<div class="input-group mb-3">
@@ -76,9 +72,9 @@
 	    					            align-items-center">
 	    					    <img src="img/profile/<?=$conversation['image']?>"
 	    					         class="w-10 rounded-circle">
-	    					    <h3 class="fs-xs m-2" style="color: black;">
+	    					    <h3 class="fs-xs m-2" id="thrdtxt">
 	    					    	<?=$conversation['first_name']?><br>
-                      <small>
+                      <small class="smalltxt">
                         <?php 
                           echo lastChat($_SESSION['user_id'], $conversation['user_id'], $connect);
                         ?>
