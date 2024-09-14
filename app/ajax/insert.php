@@ -22,7 +22,7 @@ if (isset($_SESSION['user_id'])) {
             }
         }
         # Insert message into the chats table
-        $sql = "INSERT INTO chats VALUES (NULL, '$from_id', '$to_id', '$message', 0, '$date', '0', " . ($message_file ? "'$message_file'" : "NULL") . ")";
+        $sql = "INSERT INTO chats VALUES (NULL, '$from_id', '$to_id', '$message', 0, '$date', '0', '0', " . ($message_file ? "'$message_file'" : "NULL") . ")";
         $res = mysqli_query($connect, $sql);
         
         if ($res) {
