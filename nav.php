@@ -57,6 +57,12 @@ if(isset($_SESSION['user_id']))
 				</a>
 			</li>
 			<li>
+				<a href="home.php">
+					<i class='bx bx-chat'></i>
+					<span class="text">Chat</span>
+				</a>
+			</li>
+			<li>
 				<a href="subscription.php">
 					<!-- <i class='bx bxs-user-detail'></i> -->
 					<!-- <i class="fa-solid fa-crown"></i> -->
@@ -76,15 +82,8 @@ if(isset($_SESSION['user_id']))
 					<span class="text">Personal board</span>
 				</a>
 			</li>
-		
-
 			
-			<!-- <li>
-				<a href="#">
-					<i class='bx bxs-collection'></i>
-					<span class="text">General board</span>
-				</a>
-			</li> -->
+
 			<li>
 				<a href="archive_taskss.php">
 					<i class='bx bx-archive-in' ></i>
