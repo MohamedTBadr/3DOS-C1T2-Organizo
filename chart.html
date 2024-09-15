@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Status Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Reset margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Ensures body takes up full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif; /* Optional: Add a font for better readability */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%; /* Full viewport height */
+}
+
+.chart-container {
+    width: 100%;  /* Fixed width for the container */
+    height: 80%; /* Fixed height for the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.h2 {
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-bottom: 20px; /* Adds space between heading and chart */
+}
+
+#taskChart {
+    width: 100% !important;  /* Ensures canvas takes 100% of the container width */
+    height: 100% !important; /* Ensures canvas takes 100% of the container height */
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="h2">Project Status Overview</h2>
+        <div class="chart-container">
+            <canvas id="taskChart"></canvas>
+        </div>
+    </div>
+    
+
+
+    <script>
+        async function fetchTaskData() {
+            // Get project_id from the URL query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('project_id');
+
+            if (!projectId) {
+                console.error('No project_id found in the URL');
+                return;
+            }
+
+            try {
+                const response = await fetch(`taskStatus.php?project_id=${projectId}`);  // Include project_id in the request
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching task data:', error);
+            }
+        }
+
+
+        async function createPieChart() {
+            const taskData = await fetchTaskData();
+            const taskLabels = Object.keys(taskData);  // Labels (task statuses)
+            const taskCounts = Object.values(taskData);  // Data (task counts)
+
+            const ctx = document.getElementById('taskChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: taskLabels,
+                    datasets: [{
+                        label: 'number of tasks',
+                        data: taskCounts,
+                        backgroundColor: ['#273053', '#6DB1A6','#4caf50' ], // Customize colors for each status
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            enabled: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call the function to create the chart
+        createPieChart();
+    </script>
+</body>
+</html>
