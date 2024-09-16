@@ -1,29 +1,3 @@
-
-// popup
-
-var popup = document.getElementById("popup")
-
-function openpopup() {
-    popup.classList.add("open-popup")
-}
-function closepopup() {
-    popup.classList.remove("open-popup")
-}
-
-
-
-// popup2
-
-var popup2 = document.getElementById("popup2")
-
-function openpopup2() {
-    popup2.classList.add("open-popup2")
-}
-function closepopup2() {
-    popup2.classList.remove("open-popup2")
-}
-
-
 // popup3
 
 var popup3 = document.getElementById("popup3")
@@ -36,4 +10,20 @@ function closepopup3() {
 }
 
 
-// flags 
+// delete sprint popup
+let deleteSprintId;
+function openSprintPopup(sprintId) {
+    console.log('Opening popup for sprintId:', sprintId);
+    deleteSprintId = sprintId;
+    document.getElementById('popup-sprint-' + sprintId).classList.add('show');
+
+}
+function closeSprintPopup() {
+    console.log('Closing popup for sprintId:', deleteSprintId);
+    document.getElementById('popup-sprint-' + deleteSprintId).classList.remove('show');
+
+}
+function confirmSprintDelete() {
+    console.log('Confirming delete for sprintId:', deleteSprintId);
+    document.getElementById('deleteSprintForm-' + deleteSprintId).submit();
+}
