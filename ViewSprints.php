@@ -37,46 +37,6 @@ else
     if (mysqli_num_rows($ExecSprint) == 0)
         $error = "There are no sprints for this Project yet";
 
-    if (isset($_POST['add-spr']))
-    {
-        $sprint_name =mysqli_real_escape_string($connect, $_POST['sprint_name']);
-        $start_date = mysqli_real_escape_string($connect, $_POST['start_date']);
-        $end_date = mysqli_real_escape_string($connect, $_POST['end_date']);
-
-        $start= strtotime($start_date); // Farah - Tarek code
-        $current_date= date('Y-m-d');
-        $end= strtotime($end_date);
-        $diff= ($end - $start) / (86400);
-
-        if(empty($sprint_name) || empty($start_date) || empty($end_date))
-        {
-            $error = "We are past that point, invalid start date!";
-
-        }
-        elseif($start_date < $current_date)
-        {
-            $error = "Please fill in the required data!";
-
-        }
-        elseif($diff <7 or $diff >30)
-        {
-            $error = "Please select dates between 7 and 30 days!";
-
-        }
-        else
-        {
-            $AddSprStmt = "INSERT INTO `sprint` (`sprint_name`, `start_date`, `end_date`, `project_id`) VALUES ('$sprint_name', '$start_date', '$end_date', '$pid')";
-            $ExecAddSpr = mysqli_query($connect, $AddSprStmt);
-            if ($ExecAddSpr) {
-                $done = "Sprint Successfully Added";
-                // echo "<div class='alert alert-success w-100'>";
-                // echo "<h2>Sprint Successfully Added</h2>";
-                // echo "</div>";
-                header("Refresh:2; url=ViewSprints.php?pid=$pid");
-            }
-        }
-
-    }
     if (isset($_GET['ds'])) // del logic
     {
         $sprint_id = $_GET['ds'];
@@ -85,7 +45,7 @@ else
         if ($ExecDeleteSpr)
         {
             $done="Sprint deleted successfully!";
-            header("Refresh:2; url=ViewSprints.php?pid=$pid");
+            header("location:ViewSprints.php?pid=$pid");
         }
     }
 
@@ -143,8 +103,6 @@ if(isset($_POST['search'])){
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
               integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
               <style>
                 .warning
@@ -206,9 +164,87 @@ if(isset($_POST['search'])){
     color:#58151c;
 }
 
+    /* Custom Popup Styling for SweetAlert */
+    .custom-popup .wrapper {
+      width: auto;
+      border: 2px solid #fff;
+      border-radius: 20px;
+      margin: 20px auto;
+      background-color: rgb(255, 255, 255);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .custom-popup h2 {
+      font-size: 40px;
+      color: black;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .custom-popup .input-group {
+      position: relative;
+      margin: 30px 0;
+      border-bottom: 2px solid black;
+    }
+
+    .custom-popup .input-group label {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: black;
+      pointer-events: none;
+      transition: .5s;
+      top: -5px;
+    }
+
+    .custom-popup .input-group input {
+      width: 320px;
+      height: 40px;
+      font-size: 16px;
+      color: black;
+      padding: 0 5px;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+    .btnnn {
+        margin-top: -20%;
+        background-color: rgba(255, 174, 0, 0.829);
+        color: white;
+        border: #033043;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
+    .btnnn:hover {
+        background-color: #033043;
+        color: rgb(255, 255, 255);
+    }
+    div.swal2-actions{
+      display: inline-flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 87%;
+    flex-wrap: wrap;
+    }
+    .swal2-popup{
+        width: 35%;
+        height: 100%;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      text-align: left;
+      margin-top: 5px;
+    }
             </style>
     </head>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script> 
     $(document).ready(function() {
     $("#searchText").on("input", function() {
@@ -236,7 +272,7 @@ if(isset($_POST['search'])){
     });
 });
 $('form').on('submit', function(e) {
-    e.preventDefault();  // Prevent the form from submitting in the default way
+    //e.preventDefault();  // Prevent the form from submitting in the default way
     var searchText = $('#searchText').val();
 
     if (searchText === "") {
@@ -255,12 +291,12 @@ $('form').on('submit', function(e) {
     });
 });
 
-</script> -->
+</script>
 
 <body>
     <div class="head">
         <h1>Sprints</h1>
-            <button class="start ms-3" onclick="openpopup()">+ Add Sprint</button>
+            <button class="start ms-3" onclick="showSprintForm()">+ Add Sprint</button>
     </div>
     <div class="warning <?php if ($error) { echo 'visible'; } ?>">
                     <i class="fa-solid fa-triangle-exclamation"></i>
@@ -283,17 +319,14 @@ $('form').on('submit', function(e) {
                         <button type="button" class="icon"><a href="editsprints.php?sid=<?php echo $data['sprint_id'] ?>"><i class="fa-regular fa-pen-to-square"></i></a></button>
                         
                         <button type="button" class="icon" onclick="openSprintPopup(<?php echo $data['sprint_id']?>)">
-  <i class="fa-solid fa-x fs-4" style="color: rgb(151, 2, 2);"></i>
-</button>
-
+                            <i class="fa-solid fa-x fs-4" style="color: rgb(151, 2, 2);"></i>
+                        </button>
                             <form method="GET" id="deleteSprintForm-<?php echo $data['sprint_id'];?>" style="display:none;">
                             <input type="hidden" name="ds" value="<?php echo $data['sprint_id']; ?>">
                             <input type="hidden" name="pid" value="<?php echo $pid; ?>">
                             </form>
                     </div>
                 </div>
-
-
 
                 <p class="due-description"><i class="fa-solid fa-clock"></i> Due date: <?php echo date('d M',strtotime($data['end_date'])) ?></p>
                 <?php
@@ -312,6 +345,25 @@ $('form').on('submit', function(e) {
                 <p class="left-description"><i class="fa-solid fa-hourglass-start"></i> <?php echo $message ?></p>
                 <a href="tasks.php?sid=<?php echo $data['sprint_id'] ?>"><button class="btnn ms-5">Tasks</button></a>
             </div>
+            
+    <!-- delete popup  -->
+    <?php if($role_id == 1) {?>
+
+<!-- Example delete popup HTML -->
+<div class="popup-sprint" id="popup-sprint-<?php echo $data['sprint_id']; ?>" role="alert">
+<h3><i class="fa-solid fa-triangle-exclamation"></i>Are you sure you want to delete this Sprint?</h3>
+<button type="button" class="lol btn btn-outline-dark" onclick="confirmSprintDelete()">Yes</button>
+<button type="button" class="lol btn btn-outline-dark" onclick="closeSprintPopup()">No</button>
+</div>
+
+
+
+<?php } else if ($role_id == 2) { ?>
+<div class="popup alert alert-danger w-75" id="popup3" role="alert">
+    <h2>Only the Leader can delete sprints</h2>
+    <button type="button" class="btn btn-outline-success" onclick="closepopup3()">Understood!</button>
+</div>
+<?php } ?>
         <?php } ?>
         <!-- end first card  -->
     </div><!-- end cards container -->
@@ -329,8 +381,8 @@ $('form').on('submit', function(e) {
                         <button type="button" class="icon"><a href="editsprints.php?sid=<?php echo $data['sprint_id'] ?>"><i class="fa-regular fa-pen-to-square"></i></a></button>
                         
                         <button type="button" class="icon" onclick="openSprintPopup(<?php echo $data['sprint_id']?>)">
-  <i class="fa-solid fa-x fs-4" style="color: rgb(151, 2, 2);"></i>
-</button>
+                            <i class="fa-solid fa-x fs-4" style="color: rgb(151, 2, 2);"></i>
+                            </button>
 
                             <form method="GET" id="deleteSprintForm-<?php echo $data['sprint_id'];?>" style="display:none;">
                             <input type="hidden" name="ds" value="<?php echo $data['sprint_id']; ?>">
@@ -338,8 +390,6 @@ $('form').on('submit', function(e) {
                             </form>
                     </div>
                 </div>
-
-
 
                 <p class="due-description"><i class="fa-solid fa-clock"></i> Due date: <?php echo date('d M',strtotime($data['end_date'])) ?></p>
                 <?php
@@ -357,7 +407,24 @@ $('form').on('submit', function(e) {
                 ?>
                 <p class="left-description"><i class="fa-solid fa-hourglass-start"></i> <?php echo $message ?></p>
                 <a href="tasks.php?sid=<?php echo $data['sprint_id'] ?>"><button class="btnn ms-5">Tasks</button></a>
+
             </div>
+                <!-- delete popup  -->
+    <?php if($role_id == 1) {?>
+
+<!-- Example delete popup HTML -->
+<div class="popup-sprint" id="popup-sprint-<?php echo $data['sprint_id']; ?>" role="alert">
+<h3><i class="fa-solid fa-triangle-exclamation"></i>Are you sure you want to delete this sprint?</h3>
+<button type="button" class="lol btn btn-outline-dark" onclick="confirmSprintDelete()">Yes</button>
+<button type="button" class="lol btn btn-outline-dark" onclick="closeSprintPopup()">No</button>
+</div>
+
+<?php } else if ($role_id == 2) { ?>
+<div class="popup alert alert-danger w-75" id="popup3" role="alert">
+    <h2>Only the Leader can delete sprints</h2>
+    <button type="button" class="btn btn-outline-success" onclick="closepopup3()">Understood!</button>
+</div>
+<?php } ?>
         <?php }} ?>
         <!-- end first card  -->
     </div><!-- end cards container -->
@@ -396,118 +463,135 @@ $('form').on('submit', function(e) {
   </ul>
   <?php } ?>
 
-    <!-- form add sprint  -->
-    <div class="add popup" id="popup">
-        <div class="wrapper ">
-            <div class="from-wraapper  Sign-in">
-
-
-        <form method="POST" onsubmit="return validateForm()">
-            <h2>Add sprint</h2>
-
-            <div class="input-group">
-                <input type="text" id="sprint_name" name="sprint_name"  oninput="validateName()">
-                <label for="" id="task-name">sprint name</label>
-                <span name="nameError" id="nameError" class="error" style="display:none;"></span>
-            </div>
-            </div>
-            <div class="input-group">
-                <input type="date" name="start_date" value="<?php echo date('Y-m-d')?>">
-                <label for="">Start Date</label>
-            </div>
-            <div class="input-group">
-                <input type="date" name="end_date" id="end_date" oninput="validateDate()">
-                <label for="">End Date</label>
-                <span name="dateError" id="dateError" class="error" style="display:none;"></span>
-            </div>
-            <div class="end d-lg-flex">
-                <button type="submit" class="btnn me-2" name="add-spr">Submit</button>
-                <button type="button" class="btnn" onclick="closepopup()">cancel</button>
-            </div>
-
-            </form>
-        </div>
-    </div>
-    </div>
-
-    <!-- form edit sprint  -->
-<div class="add popup" id="popup2">
-    <div class="wrapper ">
-    <div class="from-wraapper  Sign-in">
-        <form method="POST" action="ViewSprints.php?pid=<?php echo $pid ?>&us=<?php echo $sprint_id ?>">
-            <h2>Edit sprint</h2>
-
-            <div class="input-group">
-                <input type="text" id="task-name" name="sprint_name" value="<?php echo $sprintData['sprint_name']; ?>" required>
-                <label for="" id="task-name">sprint name</label>
-            </div>
-
-    </div>
-    <div class="input-group">
-        <input type="date" name="start_date" value="<?php echo $sprintData?>">
-        <input type="date" name="start_date" value="<?php echo $sprintData['start_date']; ?>" required>
-        <label for="">Start Date</label>
-    </div>
-
-        <div class="input-group">
-            <input type="date" name="end_date" value="<?php echo $sprintData['end_date']; ?>" required>
-            <label for="">End Date</label>
-        </div>
-
-        <div class="end d-lg-flex">
-            <button type="submit" class="btnn me-2" name="update-spr">Submit</button>
-            <button type="button" class="btnn" onclick="closepopup2()">cancel</button>
-        </div>
-
-        </form>
-    </div>
-</div>
-
-    <!-- delete popup  -->
-    <?php if($role_id == 1) {?>
-
-        <!-- Example delete popup HTML -->
-        <div class="popup-sprint" id="popup-sprint-<?php echo $data['sprint_id']; ?>" role="alert">
-    <h3><i class="fa-solid fa-triangle-exclamation"></i>Are you sure you want to delete this task?</h3>
-    <button type="button" class="lol btn btn-outline-dark" onclick="confirmSprintDelete()">Yes</button>
-    <button type="button" class="lol btn btn-outline-dark" onclick="closeSprintPopup()">No</button>
-</div>
-
-
-
-    <?php } else if ($role_id == 2) { ?>
-        <div class="popup alert alert-danger w-75" id="popup3" role="alert">
-            <h2>Only the Leader can delete sprints</h2>
-            <button type="button" class="btn btn-outline-success" onclick="closepopup3()">Understood!</button>
-        </div>
-    <?php } ?>
     <script src="js/sprints.js"></script>
-    <script src="js/validation.js"></script>
-    <script>
-let deleteSprintId;
-function openSprintPopup(sprintId) {
-    console.log('Opening popup for sprintId:', sprintId);
-    deleteSprintId = sprintId;
-    document.getElementById('popup-sprint-' + sprintId).classList.add('show');
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    // Assume $pid is coming from a PHP variable in your HTML
+    var pid = <?php echo json_encode($pid); ?>; // Passing the PHP $pid to JavaScript
 
+    function showSprintForm() {
+      Swal.fire({
+        title: '',
+        html: `
+          <div class="custom-popup">
+            <div class="wrapper">
+              <h2>Add Sprint</h2>
+              <div class="input-group">
+                <input type="text" id="sprint_name" name="sprint_name" required>
+                <label for="sprint_name">Sprint Name</label>
+              </div>
+              <div class="input-group">
+                <input type="date" id="start_date" name="start_date" required>
+                <label for="start_date">Start Date</label>
+              </div>
+              <div class="input-group">
+                <input type="date" id="end_date" name="end_date" required>
+                <label for="end_date">End Date</label>
+              </div>
+              <div id="validationMessage" class="error-message"></div>
+            </div>
+          </div>
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Add Sprint',
+        cancelButtonText: 'Cancel',
+        customClass: {
+          confirmButton: 'btnnn',
+          cancelButton: 'btnnn',
+        },
+        preConfirm: () => {
+          const sprint_name = document.getElementById('sprint_name').value;
+          const start_date = document.getElementById('start_date').value;
+          const end_date = document.getElementById('end_date').value;
+
+          const validationMessage = validateForm(sprint_name, start_date, end_date);
+
+          if (validationMessage) {
+            Swal.showValidationMessage(validationMessage);
+            return false;
+          }
+
+          return { sprint_name, start_date, end_date };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+      // Send data via AJAX to your PHP file
+      $.ajax({
+        type: 'POST',
+        url: 'add_sprint.php', 
+        data: {
+          sprint_name: result.value.sprint_name,
+          start_date: result.value.start_date,
+          end_date: result.value.end_date,
+          pid: pid,
+          add_spr: true
+        },
+        success: function(response) {
+          // Show success message
+          Swal.fire(
+            'Added!',
+            'The sprint has been successfully added.',
+            'success'
+          ).then(() => {
+            location.reload();
+          });
+        },
+        error: function() {
+          Swal.fire(
+            'Error!',
+            'An error occurred while adding the sprint.',
+            'error'
+          );
+        }
+      });
+    }
+  });
+
+  // Add input event listeners for real-time validation
+  document.getElementById('sprint_name').addEventListener('input', handleValidation);
+  document.getElementById('start_date').addEventListener('input', handleValidation);
+  document.getElementById('end_date').addEventListener('input', handleValidation);
 }
 
-function closeSprintPopup() {
-    console.log('Closing popup for sprintId:', deleteSprintId);
-    document.getElementById('popup-sprint-' + deleteSprintId).classList.remove('show');
+// Function to validate form data
+function validateForm(sprint_name, start_date, end_date) {
+  const currentDate = new Date().toISOString().split('T')[0];
+  const startDateObj = new Date(start_date);
+  const endDateObj = new Date(end_date);
+  const currentDateObj = new Date(currentDate);
+  const diffDays = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24);
 
+  if (!sprint_name) {
+    return 'Please fill in Sprint Name';
+  }
+  if (!start_date) {
+    return 'Please fill in Start Date';
+  }
+  if (!end_date) {
+    return 'Please fill in End Date';
+  }
+  if (diffDays < 7 || diffDays > 30) {
+    return 'The sprint duration must be between 7 and 30 days!';
+  }
+  if (startDateObj <= currentDateObj) {
+    return 'Invalid start date. It must be in the future!';
+  }
+
+  return '';
 }
 
-function confirmSprintDelete() {
-    console.log('Confirming delete for sprintId:', deleteSprintId);
-    document.getElementById('deleteSprintForm-' + deleteSprintId).submit();
+// Function to handle real-time validation
+function handleValidation() {
+  const sprint_name = document.getElementById('sprint_name').value;
+  const start_date = document.getElementById('start_date').value;
+  const end_date = document.getElementById('end_date').value;
+
+  const validationMessage = validateForm(sprint_name, start_date, end_date);
+  document.getElementById('validationMessage').textContent = validationMessage;
 }
-
-
-
 </script>
 
 </body>
 </html>
-
-<!-- $select_search="SELECT * FROM sprint WHERE `project_id` = $pid &&  (sprint_name LIKE '%$text%')";-->
