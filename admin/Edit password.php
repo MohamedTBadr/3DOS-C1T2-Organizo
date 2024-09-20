@@ -20,7 +20,7 @@ if(!isset($_SESSION['admin_id'])){
         $number = preg_match('@[0-9]@', $new_password);
         $character = preg_match('@[^/w]@', $new_password);
         if(empty ($new_password) || empty ($confirm_password)){
-            $error = "Please enter the empty fields";
+            $error = "Please fill the empty fields";
         }elseif ($uppercase < 1 || $lowercase < 1 || $number < 1 || $character <1) {
             $error = "Password must contain uppercase, lowercase, numbers, characters";
         }elseif ($new_password != $confirm_password) {
@@ -34,7 +34,7 @@ if(!isset($_SESSION['admin_id'])){
                     if($run_update){
                         session_unset();
                         session_destroy();
-                        header("location:login.php?LC=1");
+                        header("location:login_admin.php?LC=1");
                     }else{
                         $error = "Failed to update password.";
                     }
@@ -55,7 +55,7 @@ if(!isset($_SESSION['admin_id'])){
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Edit Password</title>
-    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
+    <link rel="icon" type="image/x-icon" href="../img/keklogo.png">
     <link rel="stylesheet" type="text/css" href="./css/Edit password.css">
     <style>
         .warning {
