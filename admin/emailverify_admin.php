@@ -1,5 +1,5 @@
 <?php
-include 'mail.php';
+include '../mail.php';
 $error="";
 
 if (isset($_POST['submit']))
@@ -65,7 +65,6 @@ if (isset($_POST['submit']))
     <title>Email Verify</title>
     <link rel="stylesheet" type="text/css" href="css/editpassword.css">
     <style>
-         <style>
         .warning {
             display: none;
             color: red;
@@ -74,7 +73,7 @@ if (isset($_POST['submit']))
             display: block;
         }
     </style>
-    </style>
+    <link href="../img/keklogo.png" rel="icon">
 </head>
 
 <body>

@@ -1,5 +1,5 @@
 <?php
-include 'mail.php';
+include '../mail.php';
 $error="";
 
 if(!isset($_SESSION['otp'])) // can't hop on the flow uninvited and empty handed
@@ -20,12 +20,13 @@ if(isset($_POST['submit']))
         $otp = $_POST['otp1'] . $_POST['otp2'] . $_POST['otp3'] . $_POST['otp4'] . $_POST['otp5'];
         $current_time = time();
 
-        if (empty($otp))
-            $error = "OTP can't be empty";
-        elseif ($current_time - $old_time > 60)// WE HAVE 60 SECONDS TO VERIFY SINCE SUBMISSION TIME
-            $error = "Expired OTP";
-        elseif ($rand1 == $otp)
-            header("location:forget password.php");
+        if ($rand1 == $otp)
+        {
+            if ($current_time - $old_time > 60)// WE HAVE 60 SECONDS TO VERIFY SINCE SUBMISSION TIME
+                $error = "Expired OTP";
+            else
+                header("location:forget password.php");
+        }
         else
             $error = "Incorrect OTP";
     }
@@ -83,7 +84,7 @@ if (isset($_POST['resend'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification Page</title>
-    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
+    <link rel="icon" type="image/x-icon" href="../img/keklogo.png">
     <link rel="stylesheet" href="./css/verification.css">
 </head>
 

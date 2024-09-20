@@ -1,5 +1,5 @@
 <?php
-include 'mail.php';
+include '../mail.php';
 $error=null;
 $email=$_SESSION['email'];
 
@@ -71,6 +71,7 @@ if(isset($_POST['submit']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
     <title>New Password Page</title>
     <link rel="stylesheet" type="text/css" href="css/editpassword.css">
+    <link href="../img/keklogo.png" rel="icon">
     <style>
         .warning {
             display: none;
