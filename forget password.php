@@ -1,15 +1,14 @@
 <?php
-include 'mail.php';
+include '../mail.php';
 $error=null;
 $email=$_SESSION['email'];
 
 if(isset($_POST['submit']))
 {
-    $select = "SELECT * FROM `user` WHERE `email`='$email'";
+    $select = "SELECT * FROM `admin` WHERE `email`='$email'";
     $runSelect = mysqli_query($connect, $select);
     $fetch = mysqli_fetch_assoc($runSelect);
-    $first_name = $fetch['first_name']; // for the msg
-    $last_name = $fetch['last_name'];
+    $name = $fetch['name']; // for the msg
     $newpassword =mysqli_real_escape_string($connect, $_POST['npassword']);
     $repassword =mysqli_real_escape_string($connect, $_POST['repassword']);
     $uppercase = preg_match('@[A-Z]@', $newpassword);
@@ -27,7 +26,7 @@ if(isset($_POST['submit']))
         if ($newpassword == $repassword)
         {
             $newHashPass = password_hash($newpassword, PASSWORD_DEFAULT);
-            $update = "UPDATE `user` SET `password`='$newHashPass' WHERE `email`='$email'";
+            $update = "UPDATE `admin` SET `password`='$newHashPass' WHERE `email`='$email'";
             $runubdate = mysqli_query($connect, $update);
             if ($runubdate) {
                 $massage = "
@@ -36,7 +35,7 @@ if(isset($_POST['submit']))
                         <h1>Password Reset Successful</h1>
                     </div>
                     <div style='padding: 20px; background-color: #fffffa; color: #00000a;'>
-                        <p style='color: #00000a;'>Dear <span style='color: #fda521;'>$first_name $last_name</span>,</p>
+                        <p style='color: #00000a;'>Dear <span style='color: #fda521;'>$name</span>,</p>
                         <p style='color: #00000a;'>Your password has been successfully reset. You can now log in to your account using your new password.</p>
                         <p style='color: #00000a;'>If you did not request this change, please contact our support team immediately.</p>
                         <p style='color: #00000a;'>Best regards,<br>The Organizo Team</p>
@@ -57,7 +56,7 @@ if(isset($_POST['submit']))
 
                 unset($_SESSION['otp']); // to avoid trouble
                 $_SESSION['logCHK'] = true;
-                header("Location:login.php");
+                header("Location:login_admin.php");
             }
         }
     }
@@ -72,6 +71,7 @@ if(isset($_POST['submit']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
     <title>New Password Page</title>
     <link rel="stylesheet" type="text/css" href="css/editpassword.css">
+    <link href="../img/keklogo.png" rel="icon">
     <style>
         .warning {
             display: none;
