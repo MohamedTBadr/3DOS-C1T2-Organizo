@@ -1,5 +1,5 @@
 <?php
-include '../mail.php';
+include 'mail.php';
 $error="";
 
 if(!isset($_SESSION['otp'])) // can't hop on the flow uninvited and empty handed
@@ -35,10 +35,12 @@ if(isset($_POST['submit']))
 if (isset($_POST['resend'])){
      $email=$_SESSION['email'];
      
-     $select="SELECT *FROM `admin` WHERE `email`='$email'";
+     $select="SELECT *FROM `user` WHERE `email`='$email'";
      $runselect=mysqli_query($connect,$select);
      $fetch=mysqli_fetch_assoc($runselect);
-     $name=$fetch['name'];
+     $first_name=$fetch['first_name'];
+     $last_name=$fetch['last_name'];
+
      if(mysqli_num_rows($runselect)>0){
      $rand1=rand(10000,99999);
      $massage = "
@@ -47,7 +49,7 @@ if (isset($_POST['resend'])){
              <h1>Password Reset Request</h1>
          </div>
          <div style='padding: 20px; background-color: #fffffa; color: #00000a;'>
-             <p style='color: #00000a;'>Dear <span style='color: #fda521;'>$name</span>,</p>
+             <p style='color: #00000a;'>Dear <span style='color: #fda521;'>$first_name $last_name</span>,</p>
              <p style='color: #00000a;'>We've received a request to reset your password. Please use the OTP that we've resent below to complete the process:</p>
              <p style='color: #00000a; text-align: center; font-size: 24px; font-weight: bold; color: #fda521;'>$rand1</p>
              <p style='color: #00000a;'>If you did not request a password reset, please ignore this email or contact our support team for assistance.</p>
@@ -84,7 +86,7 @@ if (isset($_POST['resend'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification Page</title>
-    <link rel="icon" type="image/x-icon" href="../img/keklogo.png">
+    <link rel="icon" type="image/x-icon" href="./img/keklogo.png">
     <link rel="stylesheet" href="./css/verification.css">
 </head>
 
