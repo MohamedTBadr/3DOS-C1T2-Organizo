@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Combined Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 10;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .chart-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .chart-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .chart-box {
+            flex: 1;
+            padding: 20px;
+            margin: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .farah canvas {
+            width: 950px !important;
+            height: 450px !important;
+        }
+        .tarek canvas {
+            width: 450px !important;
+            height: 450px !important;
+        }
+        .alaa canvas {
+            width: 500px!important;
+            height: 500px!important;
+            /* margin: 50px auto !important; */
+        }
+        .salma canvas {
+            width: 850px;
+            height: 450px;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .chart-box {
+                flex-basis: 100%;
+                margin-bottom: 20px;
+            }
+            .farah canvas {
+                width: 100% !important;
+                height: auto !important;
+            }
+            .tarek canvas,
+            .salma canvas,
+            .alaa canvas {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Row 1: Active Users and User Signups by Month -->
+    <div class="chart-row">
+        <div class="chart-box">
+            <div class="farah">
+                <div class="chart-title">Most Active Users (Tasks, Comments, Chats)</div>
+                <canvas id="activeUsersChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <div class="tarek">
+                <div class="chart-title">User Signups by Month-<a href="display_users.php">View Users</a></div>
+                <canvas id="myDonutChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2: Users per Plan and Role-Based Distribution -->
+    <div class="chart-row">
+        <div class="chart-box">
+            <div class="alaa">
+                <div class="chart-title">Role-Based User Distribution</div>
+                <canvas id="roleDistributionChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <div class="salma">
+                <div class="chart-title">Number of Users per Plan</div>
+                <canvas id="myChart" width= "850px" height="450px"></canvas>
+            </div>
+        </div>
+    </div>
+
+<script src="js/charts.js"></script>
+
+</body>
+</html>
