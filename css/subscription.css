@@ -60,7 +60,14 @@ h4{
     margin-right: 2%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
+    text-align: center;
+    
 }
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px #fda52176;
+}
+
 .pricing-card .price{
     text-align: center;
 }
@@ -69,10 +76,6 @@ transform: translateX(30px);
 
 }
 
-.pricing-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
 .card-title {
     font-size: 24px;
@@ -105,11 +108,11 @@ transform: translateX(30px);
     cursor: pointer;
     text-transform: uppercase;
     transition: background-color 0.3s ease;
-    transform: translateX(33%);
-    margin-left: 12%;
+    /* transform: translateX(33%); */
+    /* margin-left: 12%; */
 }
 .btn:hover {
-    background-color: #575b5e;
+    background-color: #ffae00;
     color: white;
 }
 .pricing-table {
