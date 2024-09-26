@@ -67,11 +67,12 @@ $resAllPlans = mysqli_query($connect, $allPlans);
             <h2 class="card-title"><?php echo $plan['plan_type']?></h2>
             <p class="price">$<?php echo $plan['price']?>/month</p>
             <p class="description">Included in <?php echo $plan['plan_type']?>:</p>
-            <ul class="list">
-                <li>only up to <?php echo $plan['limit']?> members</li>
+
+            <p class="list">
+                <p>only up to <?php echo $plan['limit']?> members</p>
                 <br>
                 <!-- <input type="hidden" name="plan_id"> -->
-            </ul>
+            </p>
             <!-- <button name="choose" type="submit" class="btn">select plan -->
                 <a class="btn" href="./payment.php?plan=<?php echo $plan['plan_id']?>">Choose Plan</a>
             <!-- </button> -->
