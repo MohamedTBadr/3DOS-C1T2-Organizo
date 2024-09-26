@@ -323,7 +323,7 @@ button:hover {
   color: #033043;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border: 2px solid #033043;
+  border: 2px solid #fda521;
   border-radius: 13px;
   position: relative;
   transition: all 700ms ease;
