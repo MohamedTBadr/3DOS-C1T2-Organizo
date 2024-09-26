@@ -14,7 +14,7 @@
 .container {
     min-height: 100vh;
     padding-top: 15px;
-    background: #054955dc;
+    background: linear-gradient(45deg, #6db1a6, #fda521);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +83,7 @@
     padding: 20px;
     transform: perspective(1000px) rotateY(0deg);
     transition: transform .4s ease-out;
-    background-image: linear-gradient(170deg, #fda521, #6db1a6);
+    background-image: linear-gradient(45deg, #fda521, #6db1a6);
 }
 
 .container .card-container .front .image {
@@ -123,7 +123,7 @@
     height: 100%;
     width: 100%;
     /* background-color: #2124b1; */
-    background: linear-gradient(45deg, #6db1a6, #fda521);
+    background: linear-gradient(170deg, #6db1a6, #fda521);
     border-radius: 5px;
     padding: 20px 0;
     text-align: right;
